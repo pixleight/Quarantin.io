@@ -1,32 +1,80 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-navigation-drawer
+      v-model="filterDrawer"
+      app
+      right
+      temporary
+      color="secondary"
+      dark
+    >
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title class="title">
+            Filter Products
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+      <products-filters></products-filters>
+    </v-navigation-drawer>
+
+    <v-app-bar
+      app
+      color="primary"
+      dark
+    >
+      <v-toolbar-title>TPfor.Me</v-toolbar-title>
+
+      <v-spacer></v-spacer>
+
+      <v-tooltip bottom>
+        <template #activator="{on}">
+          <v-btn icon to="/map" v-on="on">
+            <v-icon>
+              mdi-map
+            </v-icon>
+          </v-btn>
+        </template>
+        <span>View Map</span>
+      </v-tooltip>
+
+      <add-product></add-product>
+      
+      <v-tooltip bottom>
+        <template #activator="{on}">
+          <v-btn icon @click.stop="filterDrawer = !filterDrawer" v-on="on">
+            <v-icon>
+              mdi-filter
+            </v-icon>
+          </v-btn>
+        </template>
+        <span>Filter Products</span>
+      </v-tooltip>
+    </v-app-bar>
+
+    <v-content>
+      <router-view/>
+    </v-content>
+
+    <v-footer app color="primary">
+      Footer
+    </v-footer>
+  </v-app>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import ProductsFilters from '@/components/products/Filters'
+import AddProduct from '@/components/products/Add'
 
-#nav {
-  padding: 30px;
+export default {
+  name: 'App',
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+  data: () => ({
+    filterDrawer: false,
+  }),
+  components: {
+    AddProduct,
+    ProductsFilters,
   }
-}
-</style>
+};
+</script>
