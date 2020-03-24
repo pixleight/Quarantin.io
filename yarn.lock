@@ -1415,6 +1415,13 @@
   resolved "https://registry.yarnpkg.com/@vue/web-component-wrapper/-/web-component-wrapper-1.2.0.tgz#bb0e46f1585a7e289b4ee6067dcc5a6ae62f1dd1"
   integrity sha512-Xn/+vdm9CjuC9p3Ae+lTClNutrVhsXpzxvoTXXtoys6kVRX9FkueSUAqSWAyZntmVLlR4DosBV4pH8y5Z/HbUw==
 
+"@vuetify/cli-plugin-utils@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@vuetify/cli-plugin-utils/-/cli-plugin-utils-0.0.6.tgz#843b1f3124e0548f862070998bd2a0eee82b7298"
+  integrity sha512-g/gPeMsQoOIjiA3mmiWYIOu4wr5L6hcwAZRD6QrDFWot51YtTGJvqUIYMXO3EGmC6a744NSDVdoapPDgiDPakw==
+  dependencies:
+    semver "^7.1.2"
+
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.8.5.tgz#51b1c5fe6576a34953bf4b253df9f0d490d9e359"
@@ -8770,6 +8777,13 @@ vm-browserify@^1.0.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
+
+vue-cli-plugin-vuetify-preset-reply@~1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/vue-cli-plugin-vuetify-preset-reply/-/vue-cli-plugin-vuetify-preset-reply-1.0.3.tgz#86ee498544b8e2b2c773108b45a7de9af9eccea0"
+  integrity sha512-p7PaORn4ZGtsuf8QpE08alNTuSYnTiErGcz1qzaPyO49mZu5AbH1TiZTaTnn+xSgnaiWhdUWstYzKihMl/IoPA==
+  dependencies:
+    "@vuetify/cli-plugin-utils" "^0.0.6"
 
 vue-cli-plugin-vuetify@~2.0.5:
   version "2.0.5"

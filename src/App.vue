@@ -56,15 +56,14 @@
       <router-view/>
     </v-content>
 
-    <v-footer app color="primary">
-      Footer
-    </v-footer>
+    <app-footer></app-footer>
   </v-app>
 </template>
 
 <script>
 import ProductsFilters from '@/components/products/Filters'
 import AddReport from '@/components/products/AddReport'
+import AppFooter from '@/components/AppFooter.vue';
 
 export default {
   name: 'App',
@@ -73,8 +72,13 @@ export default {
     filterDrawer: false,
   }),
   components: {
+    AppFooter,
     AddReport,
     ProductsFilters,
   }
 };
 </script>
+
+<style lang="scss" scoped>
+
+</style>
