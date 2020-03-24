@@ -5,6 +5,7 @@ import app from './app'
 import todos from './todos'
 import user from './user'
 import products from './products'
+import reports from './reports'
 
 Vue.use(Vuex)
 
@@ -21,5 +22,6 @@ export default new Vuex.Store({
     todos,
     user,
     products,
+    reports,
   }
 })

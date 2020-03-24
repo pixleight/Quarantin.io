@@ -5,17 +5,17 @@
       :zoom="zoom"
       style="width: 100%; height: 100%"
     >
-      <product-markers></product-markers>
+      <report-markers></report-markers>
     </GmapMap>
   </v-container>
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex'
-
-  import ProductMarkers from '@/components/products/Markers'
+  import { mapActions, mapGetters, mapState } from 'vuex'
+  import ReportMarkers from '@/components/reports/Markers'
   import { Action as AppAction } from '@/store/app/types'
-  import { Action as ProductAction } from '@/store/products/types'
+  import { Action as ReportAction } from '@/store/reports/types'
+  import { Getter as ReportGetter } from '@/store/reports/types'
 
   export default {
     data: () => ({
@@ -23,17 +23,20 @@
       zoom: 4,
     }),
     components: {
-      ProductMarkers,
+      ReportMarkers,
     },
     computed: {
       ...mapState('app', {
         appGeo: state => state.geolocation,
       }),
       ...mapState('products', ['products']),
+      ...mapGetters('reports', {
+        groupedReports: ReportGetter.GROUPED_REPORTS,
+      })
     },
     methods: {
-      ...mapActions('products', {
-        init: ProductAction.INIT,
+      ...mapActions('reports', {
+        init: ReportAction.INIT,
       }),
       ...mapActions('app', {
         geolocate: AppAction.GEOLOCATE,

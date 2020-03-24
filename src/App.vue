@@ -38,7 +38,7 @@
         <span>View Map</span>
       </v-tooltip>
 
-      <add-product></add-product>
+      <add-report></add-report>
       
       <v-tooltip bottom>
         <template #activator="{on}">
@@ -64,7 +64,7 @@
 
 <script>
 import ProductsFilters from '@/components/products/Filters'
-import AddProduct from '@/components/products/Add'
+import AddReport from '@/components/products/AddReport'
 
 export default {
   name: 'App',
@@ -73,7 +73,7 @@ export default {
     filterDrawer: false,
   }),
   components: {
-    AddProduct,
+    AddReport,
     ProductsFilters,
   }
 };
