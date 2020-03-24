@@ -23,7 +23,7 @@
       color="primary"
       dark
     >
-      <v-toolbar-title>TPfor.Me</v-toolbar-title>
+      <v-toolbar-title>Quarantin.io</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
