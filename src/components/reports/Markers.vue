@@ -6,19 +6,10 @@
       :opened="infoWindow.open"
       @closeclick="infoWindow.open = false"
     >
-      <template v-if="Object.keys(infoWindow.content).length">
-        <v-card>
-          <v-card-text>
-            <h4 class="title">
-              {{ infoWindow.content.place.name }}
-            </h4>
-            <v-subheading>
-              {{ infoWindow.content.place.address }}
-            </v-subheading>
-          </v-card-text>
-        </v-card>
-        
-      </template>
+      <info-window
+        v-if="Object.keys(infoWindow.content).length"
+        :content="infoWindow.content"
+      ></info-window>
     </gmap-info-window>
 
     <gmap-cluster>
@@ -36,6 +27,7 @@
   import { mapGetters } from 'vuex'
   import { Getter as ReportGetter } from '@/store/reports/types'
   import ReportMarker from './Marker'
+  import InfoWindow from './InfoWindow'
 
   export default {
     data: () => ({
@@ -53,6 +45,7 @@
       currentInfoWindow: null,
     }),
     components: {
+      InfoWindow,
       ReportMarker,
     },
     computed: {
@@ -62,8 +55,6 @@
     },
     methods: {
       toggleInfoWindow(reports, marker) {
-        console.log(reports, marker);
-
         this.infoWindow.pos = { lat: marker.geo.F, lng: marker.geo.V }
         this.infoWindow.content = {
           place: marker.place,
