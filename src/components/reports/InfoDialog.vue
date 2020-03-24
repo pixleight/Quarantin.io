@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" @click:outside="$emit('close-dialog')">
+  <v-dialog v-model="dialog" @click:outside="$emit('close-dialog')" max-width="500">
     <v-card>
       <v-toolbar dark color="secondary">
         <v-btn icon dark @click="$emit('close-dialog')">
@@ -9,36 +9,48 @@
           {{ content.place.name }}
         </v-toolbar-title>
       </v-toolbar>
-      <v-card-subtitle>
-        {{ content.place.address }}
-      </v-card-subtitle>
-      <v-card-text>
-        <v-expansion-panels accordion multiple flat>
-          <v-expansion-panel v-for="(cat, i) in availableProducts" :key="i">
-            <v-expansion-panel-header>
-              {{ cat.category }}
-            </v-expansion-panel-header>
-            <v-expansion-panel-content>
-              <v-row dense>
-                <v-col cols="6" v-for="(product, i) in cat.items" :key="i">
-                  <h4 class="text-center">
-                    {{ product }}
-                  </h4>
-                  <product-data :data="groupedProducts[product]"></product-data>
-                </v-col>
-              </v-row>
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-        </v-expansion-panels>
-      </v-card-text>
+      <v-list subheader>
+        <v-subheader>
+          <v-row dense align="center">
+            <v-col>
+              {{ content.place.address }}
+            </v-col>
+            <v-col cols="auto">
+              <v-chip
+                small
+                color="green"
+                text-color="white"
+              >Updated: {{ lastUpdated }}</v-chip>
+            </v-col>
+          </v-row>
+        </v-subheader>
+        <v-list-group v-for="(cat, i) in availableProducts" :key="i">
+          <template #activator>
+            <v-list-item-title>
+              <span class="font-weight-bold">{{ cat.category }}</span>
+            </v-list-item-title>
+          </template>
+          <v-list-item v-for="(product, i) in cat.items" :key="i">
+            <v-list-item-title>
+              {{ product }}
+            </v-list-item-title>
+            <v-list-item-action>
+              <product-data :data="groupedProducts[product]"></product-data>
+            </v-list-item-action>
+          </v-list-item>
+
+        </v-list-group>
+      </v-list>
     </v-card>
   </v-dialog>
 </template>
 
 <script>
   import _ from 'lodash'
+  import moment from 'moment'
   import { mapState } from 'vuex'
   import ProductData from './ProductData'
+  import { Timestamp } from '@/firebase'
 
   export default {
     components: {
@@ -62,12 +74,19 @@
 
         return _.groupBy(flattenedProducts, 'name')
       },
+      lastUpdated() {
+        const [report] = this.content.reports;
+        const { seconds, nanoseconds } = report.created
+        const date = new Timestamp(seconds, nanoseconds).toDate()
+
+        return moment(date).fromNow();
+      }
     },
     methods: {
       averageScore() {
         //
       }
-    }
+    },
   }
 </script>
 

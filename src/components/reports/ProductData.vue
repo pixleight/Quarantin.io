@@ -5,10 +5,11 @@
       :value="average * 10"
       :size="32"
       :width="8"
+      color="accent"
     ></v-progress-circular>
-    <v-subheader v-else class="text-center">
+    <span v-else class="caption text-center">
       No data available
-    </v-subheader>
+    </span>
   </div>
 </template>
 

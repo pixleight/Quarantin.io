@@ -1,7 +1,7 @@
 // import { firestoreAction } from 'vuexfire'
 // import { db } from '@/firebase'
 import { Action, Mutation } from '../types'
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 // import { firestoreAction } from 'vuexfire';
 
 export default {
