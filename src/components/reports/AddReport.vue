@@ -123,6 +123,11 @@
       valid: false,
       placeError: false,
       bot: true,
+      snackbar: {
+        open: false,
+        type: '',
+        message: '',
+      },
       form: {
         place: null,
         products: [],
@@ -177,13 +182,25 @@
         }
 
         if (!this.placeError) {
-          this.addReport({
-            place: this.form.place,
-            geo: this.form.geo,
-            products: this.form.products,
-          });
-          this.initializeData();
-          this.toggleReportDialog(false)
+          try {
+            await this.addReport({
+              place: this.form.place,
+              geo: this.form.geo,
+              products: this.form.products,
+            });
+            
+            this.snackbar.type = 'success'
+            this.snackbar.message = 'Thank you! Report added successfully.'
+            this.snackbar.open = true
+
+            this.initializeData();
+            this.toggleReportDialog(false)
+          } catch (error) {
+            console.error(error);
+            this.snackbar.type = 'error'
+            this.snackbar.message = 'Oops! Something went wrong. Please try again.'
+            this.snackbar.open = true
+          }
         }
       },
       setPlace(place) {
