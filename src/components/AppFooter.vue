@@ -1,5 +1,5 @@
 <template>
-  <v-footer app dark class="pt-4 pt-md-0">
+  <v-footer app dark padless class="pt-8 pt-md-0">
     <v-tooltip top>
       <template #activator="{ on: tooltip }">
         <v-btn
@@ -18,10 +18,21 @@
       <span>Add Product</span>
     </v-tooltip>
     <v-container>
-      <v-row>
-        <v-col>
+      <v-row align="center">
+        <v-col cols="7" sm>
           <small>Developed by <a href="https://pixleight.com/" target="_blank" class="white--text">Chris Violette</a></small><br />
           <small><a href="https://github.com/pixleight/Quarantin.io" target="_blank" class="white--text">Contribute on GitHub</a></small>
+        </v-col>
+        <v-spacer></v-spacer>
+        <v-col cols="5" sm="auto">
+          <v-tooltip top color="#ff813f" dark nudge-top="16">
+            <template v-slot:activator="{ on }">
+                <a v-on="on" class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/T59nQiD">
+                  <img class="bmc-button__img" src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee">
+                </a>
+            </template>
+            <span>Help support development of this site</span>
+          </v-tooltip>
         </v-col>
       </v-row>
     </v-container>
@@ -76,5 +87,13 @@ svg {
 
 circle {
   transform: translateX(50%);
+}
+
+.bmc-button {
+  img {
+    width: 100%;
+    max-width: 10rem;
+    height: auto;
+  }
 }
 </style>
