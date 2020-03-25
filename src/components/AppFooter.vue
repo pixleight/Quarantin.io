@@ -20,7 +20,7 @@
     <v-container>
       <v-row>
         <v-col>
-          <small>Developed by <a href="https://pixleight.com/" target="_blank" class="white--text">Chris Violette</a></small>
+          <small>Developed by <br v-if="$vuetify.breakpoint.xsOnly"><a href="https://pixleight.com/" target="_blank" class="white--text">Chris Violette</a></small>
         </v-col>
       </v-row>
     </v-container>
