@@ -1,15 +1,22 @@
 <template>
   <v-footer app dark>
-    <v-btn
-      absolute
-      dark
-      fab
-      top
-      large
-      color="secondary"
-    >
-      <v-icon>mdi-plus</v-icon>
-    </v-btn>
+    <v-tooltip top>
+      <template #activator="{ on: tooltip }">
+        <v-btn
+          absolute
+          dark
+          fab
+          top
+          large
+          color="secondary"
+          v-on="{ ...tooltip }"
+          @click="toggleReportDialog(true)"
+        >
+          <v-icon>mdi-map-marker-plus</v-icon>
+        </v-btn>
+      </template>
+      <span>Add Product</span>
+    </v-tooltip>
     <v-container>
       <v-row>
         <v-col>
@@ -28,8 +35,15 @@
 </template>
 
 <script>
+  import { mapMutations,  } from 'vuex'
+  import { Mutation as AppMutation } from '@/store/app/types'
+
   export default {
-    
+    methods: {
+      ...mapMutations('app', {
+        toggleReportDialog: AppMutation.SET_REPORT_DIALOG,
+      }),
+    }
   }
 </script>
 
