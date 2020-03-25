@@ -18,52 +18,7 @@
       <products-filters></products-filters>
     </v-navigation-drawer>
 
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <router-link to="/">
-        <v-toolbar-title class="white--text">
-          Quarantin.io
-        </v-toolbar-title>
-      </router-link>
-
-      <v-spacer></v-spacer>
-
-      <v-tooltip bottom>
-        <template #activator="{on}">
-          <v-btn icon to="/map" v-on="on">
-            <v-icon>
-              mdi-map
-            </v-icon>
-          </v-btn>
-        </template>
-        <span>View Map</span>
-      </v-tooltip>
-
-      <v-tooltip bottom>
-        <template #activator="{ on }">
-          <v-btn icon v-on="{ on }" @click.stop="toggleReportDialog(true)">
-            <v-icon>
-              mdi-map-marker-plus
-            </v-icon>
-          </v-btn>
-        </template>
-        <span>Add Product</span>
-      </v-tooltip>
-      
-      <v-tooltip bottom>
-        <template #activator="{on}">
-          <v-btn icon @click.stop="filterDrawer = !filterDrawer" v-on="on">
-            <v-icon>
-              mdi-filter
-            </v-icon>
-          </v-btn>
-        </template>
-        <span>Filter Products</span>
-      </v-tooltip>
-    </v-app-bar>
+    <app-header></app-header>
 
     <v-content>
       <router-view/>
@@ -79,9 +34,10 @@ import { mapMutations } from 'vuex'
 import {
   Mutation as AppMutation
 } from '@/store/app/types'
-import ProductsFilters from '@/components/products/Filters'
+import AppHeader from '@/components/AppHeader';
+import AppFooter from '@/components/AppFooter';
 import AddReport from '@/components/reports/AddReport'
-import AppFooter from '@/components/AppFooter.vue';
+import ProductsFilters from '@/components/products/Filters'
 
 export default {
   name: 'App',
@@ -90,6 +46,7 @@ export default {
     filterDrawer: false,
   }),
   components: {
+    AppHeader,
     AppFooter,
     AddReport,
     ProductsFilters,

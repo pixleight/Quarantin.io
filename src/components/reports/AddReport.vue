@@ -5,10 +5,11 @@
     :hide-overlay="$vuetify.breakpoint.xsOnly"
     scrollable transition="dialog-bottom-transition"
     @click:outside="toggleReportDialog(false)"
+    @keydown.esc="toggleReportDialog(false)"
   >
     <v-form ref="form" @submit.prevent="add" v-model="valid">
       <v-card tile>
-        <v-toolbar dark color="secondary">
+        <v-toolbar dark flat color="secondary">
           <v-btn icon dark @click="toggleReportDialog(false)">
             <v-icon>mdi-close</v-icon>
           </v-btn>
