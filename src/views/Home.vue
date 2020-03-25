@@ -14,7 +14,7 @@
               One of the problems facing people during the crisis has been finding basic household staples — such as toilet paper, milk, or disinfencants.
             </p>
             <p>
-              <strong>Quarantin.io</strong> aims to help with this problem by asking community members to share what they've found while on their own shopping trips. By being able to preview what stores have is stock, hopefully people reduce their risk of exposure by knowing where to find products ahead of time and not needing to visit multiple stores.
+              <strong>Quarantin.io</strong> aims to help with this problem by asking community members to share what they've found while on their own shopping trips. By being able to preview what stores have in stock, hopefully people reduce their risk of exposure by knowing where to find products ahead of time and not needing to visit multiple stores.
             </p>
           </v-col>
           <v-col cols="12" md="6">
