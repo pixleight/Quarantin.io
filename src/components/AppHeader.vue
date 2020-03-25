@@ -34,17 +34,6 @@
       </template>
       <span>Add Product</span>
     </v-tooltip>
-    
-    <v-tooltip bottom>
-      <template #activator="{on}">
-        <v-btn icon @click.stop="filterDrawer = !filterDrawer" v-on="on">
-          <v-icon>
-            mdi-filter
-          </v-icon>
-        </v-btn>
-      </template>
-      <span>Filter Products</span>
-    </v-tooltip>
   </v-app-bar>
 </template>
 
