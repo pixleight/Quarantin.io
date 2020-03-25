@@ -27,7 +27,7 @@
     </section>
     <section>
       <v-container>
-        <h2 class="display-2 text-center">
+        <h2 class="display-2 text-center mb-8">
           How it Works
         </h2>
 
@@ -130,6 +130,10 @@ export default {
   border-radius: 0.3rem;
 }
 
+.v-timeline {
+  padding: 4rem 0;
+}
+
 .v-timeline-item__body {
   perspective: 600px;
 }
@@ -143,5 +147,9 @@ export default {
 .v-timeline-item:nth-child(2n+1) .v-card {
   transform: rotateY(-7deg);
   transform-origin: left;
+}
+
+.disclaimer {
+  background: var(--v-secondary-base);
 }
 </style>
