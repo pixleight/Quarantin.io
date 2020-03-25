@@ -15,14 +15,16 @@
       </v-col>
       <v-col>
         <v-form
+          ref="feedback"
           name="Quarantinio Feedback"
           method="post"
           action="/"
           @submit.prevent="submit($event)"
           v-model="valid"
           netlify
+          data-netlify-recaptcha="true"
         >
-          <input name="form-name" value="Quarantinio Feedback" type="hidden" />
+          <input name="form-name" value="Quarantin.io Feedback" type="hidden" />
           <v-card elevation="2" color="primary darken-1" dark shaped>
             <v-card-text>
               <v-text-field
@@ -37,8 +39,8 @@
                 filled
                 label="Email"
                 v-model="form.email"
-                :rules="[v => /.+@.+/.test(v) || 'Please enter a valid email address.']"
                 name="email"
+                type="email"
               ></v-text-field>
               <v-textarea
                 dark
@@ -52,7 +54,12 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn type="submit" color="secondary" class="primary--text text--darken-2">
+              <v-btn
+                type="submit"
+                color="secondary"
+                class="primary--text text--darken-2"
+                :loading="loading"
+              >
                 Send Feedback
               </v-btn>
             </v-card-actions>
@@ -60,6 +67,19 @@
         </v-form>
       </v-col>
     </v-row>
+    <v-snackbar
+      v-model="snackbar.open"
+      :color="snackbar.color"
+    >
+      {{ snackbar.message }}
+      <v-btn
+        color="white"
+        text
+        @click="snackbar.open = false"
+      >
+        Close
+      </v-btn>
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -70,19 +90,37 @@
   export default {
     data: () => ({
       valid: false,
+      loading: false,
       form: {
-        'form-name': 'Quarantinio Feedback',
         name: '',
         email: '',
         comments: '',
+      },
+      snackbar: {
+        open: false,
+        color: '',
+        message: '',
       }
     }),
     methods: {
       async submit() {
         try {
-          const formdata = qs.stringify(this.form);
-          console.log(formdata);
-          const result = await axios({
+          if (!this.$refs.feedback.validate()) return;
+
+          this.loading = true
+
+          const formdata = qs.stringify({
+            'form-name': 'Quarantin.io Feedback',
+            ...this.form,
+          });
+
+          const slowdown = new Promise((resolve) => {
+            setTimeout(resolve, 2000)
+          })
+
+          await slowdown
+
+          await axios({
             method: 'post',
             url: '/',
             headers: {
@@ -90,9 +128,25 @@
             },
             data: formdata,
           })
-          console.log(result)
+
+          this.snackbar = {
+            open: true,
+            color: 'success',
+            message: 'Thank you for your feedback!'
+          }
+          this.form = {
+            name: '',
+            email: '',
+            comments: '',
+          }
         } catch (error) {
-          console.log(error)
+          this.snackbar = {
+            open: true,
+            color: 'error',
+            message: 'Something went wrong. Please try again soon.'
+          }
+        } finally {
+          this.loading = false;
         }
       }
     }
