@@ -23,7 +23,11 @@
       color="primary"
       dark
     >
-      <v-toolbar-title>Quarantin.io</v-toolbar-title>
+      <router-link to="/">
+        <v-toolbar-title class="white--text">
+          Quarantin.io
+        </v-toolbar-title>
+      </router-link>
 
       <v-spacer></v-spacer>
 
@@ -38,7 +42,16 @@
         <span>View Map</span>
       </v-tooltip>
 
-      <add-report></add-report>
+      <v-tooltip bottom>
+        <template #activator="{ on }">
+          <v-btn icon v-on="{ on }" @click.stop="toggleReportDialog(true)">
+            <v-icon>
+              mdi-map-marker-plus
+            </v-icon>
+          </v-btn>
+        </template>
+        <span>Add Product</span>
+      </v-tooltip>
       
       <v-tooltip bottom>
         <template #activator="{on}">
@@ -57,12 +70,17 @@
     </v-content>
 
     <app-footer></app-footer>
+    <add-report></add-report>
   </v-app>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+import {
+  Mutation as AppMutation
+} from '@/store/app/types'
 import ProductsFilters from '@/components/products/Filters'
-import AddReport from '@/components/products/AddReport'
+import AddReport from '@/components/reports/AddReport'
 import AppFooter from '@/components/AppFooter.vue';
 
 export default {
@@ -75,6 +93,11 @@ export default {
     AppFooter,
     AddReport,
     ProductsFilters,
+  },
+  methods: {
+    ...mapMutations('app', {
+      toggleReportDialog: AppMutation.SET_REPORT_DIALOG,
+    }),
   }
 };
 </script>
