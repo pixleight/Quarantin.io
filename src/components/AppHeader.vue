@@ -24,7 +24,7 @@
 
     <v-spacer></v-spacer>
 
-    <v-btn text rounded to="/map" v-on="on">
+    <v-btn text rounded to="/map">
       <v-icon left>mdi-map</v-icon>
       View the Map
     </v-btn>

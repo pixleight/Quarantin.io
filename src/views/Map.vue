@@ -29,7 +29,6 @@
       ...mapState('app', {
         appGeo: state => state.geolocation,
       }),
-      ...mapState('products', ['products']),
       ...mapGetters('reports', {
         groupedReports: ReportGetter.GROUPED_REPORTS,
       })

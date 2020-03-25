@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { vuexfireMutations } from 'vuexfire'
 import app from './app'
-import todos from './todos'
 import user from './user'
 import products from './products'
 import reports from './reports'
@@ -19,7 +18,6 @@ export default new Vuex.Store({
   },
   modules: {
     app,
-    todos,
     user,
     products,
     reports,
