@@ -5,7 +5,7 @@
       :value="average * 10"
       :size="32"
       :width="8"
-      color="accent"
+      color="primary"
     ></v-progress-circular>
     <span v-else class="caption text-center">
       No data available

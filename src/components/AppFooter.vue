@@ -1,5 +1,5 @@
 <template>
-  <v-footer app dark>
+  <v-footer app dark class="pt-4 pt-md-0">
     <v-tooltip top>
       <template #activator="{ on: tooltip }">
         <v-btn
@@ -20,7 +20,8 @@
     <v-container>
       <v-row>
         <v-col>
-          <small>Developed by <br v-if="$vuetify.breakpoint.xsOnly"><a href="https://pixleight.com/" target="_blank" class="white--text">Chris Violette</a></small>
+          <small>Developed by <a href="https://pixleight.com/" target="_blank" class="white--text">Chris Violette</a></small><br />
+          <small><a href="https://github.com/pixleight/Quarantin.io" target="_blank" class="white--text">Contribute on GitHub</a></small>
         </v-col>
       </v-row>
     </v-container>

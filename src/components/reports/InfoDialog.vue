@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="dialog" @click:outside="$emit('close-dialog')" max-width="500">
     <v-card>
-      <v-toolbar dark color="secondary">
+      <v-toolbar dark flat color="secondary">
         <v-btn icon dark @click="$emit('close-dialog')">
           <v-icon>mdi-close</v-icon>
         </v-btn>
@@ -9,21 +9,28 @@
           {{ content.place.name }}
         </v-toolbar-title>
       </v-toolbar>
-      <v-list subheader>
-        <v-subheader>
-          <v-row dense align="center">
-            <v-col>
-              {{ content.place.address }}
-            </v-col>
-            <v-col cols="auto">
+      <v-card-text class="mb-0">
+        <v-row dense align="center">
+          <v-col cols="12">
+            {{ content.place.address }}
+          </v-col>
+          <v-col cols="12">
+            <v-chip-group column>
               <v-chip
                 small
-                color="green"
+                color="indigo darken-2"
                 text-color="white"
-              >Updated: {{ lastUpdated }}</v-chip>
-            </v-col>
-          </v-row>
-        </v-subheader>
+              >Last Updated: {{ lastUpdated }}</v-chip>
+              <v-chip
+                small
+                color="teal darken-2"
+                text-color="white"
+              >{{ content.reports.length }} Reports</v-chip>
+            </v-chip-group>
+          </v-col>
+        </v-row>
+      </v-card-text>
+      <v-list>
         <v-list-group v-for="(cat, i) in availableProducts" :key="i">
           <template #activator>
             <v-list-item-title>
@@ -41,6 +48,9 @@
 
         </v-list-group>
       </v-list>
+      <v-footer dark color="primary" class="text-center body-2">
+        <em>Product inventories are estimates provided by the community and may not reflect actual stock.</em>
+      </v-footer>
     </v-card>
   </v-dialog>
 </template>
