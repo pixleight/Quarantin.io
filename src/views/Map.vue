@@ -18,6 +18,9 @@
   import { Getter as ReportGetter } from '@/store/reports/types'
 
   export default {
+    metaInfo : {
+      title: 'Map',
+    },
     data: () => ({
       center: {lat: 39.833333, lng: -98.583333},
       zoom: 4,

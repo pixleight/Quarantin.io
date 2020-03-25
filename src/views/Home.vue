@@ -1,11 +1,11 @@
 <template>
   <div>
-    <section class="hero white--text py-6 py-md-12">
+    <section class="hero white--text pt-6 pt-md-12">
       <v-container>
         <v-row>
           <v-col cols="12" md="6">
             <h1 class="display-1 mb-8">
-              Helping people find the products they need
+              People helping people find the supplies they need
             </h1>
             <p class="subtitle-1">
               With the recent COVID-19 outbreak, we've found a lot of aspects of our lives turned upside down as more and more of us are needing to stay home as much as possible.
@@ -21,6 +21,11 @@
             <v-card shaped elevation="5">
               <v-img src="img/shopping-hero.jpg" />
             </v-card>
+          </v-col>
+          <v-col cols="12">
+            <v-alert color="secondary" dense border="bottom" class="text-center">
+              Please be considerate. Only take what you need. We're all in this together.
+            </v-alert>
           </v-col>
         </v-row>
       </v-container>
