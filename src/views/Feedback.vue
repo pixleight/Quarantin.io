@@ -14,12 +14,42 @@
         </v-alert>
       </v-col>
       <v-col>
-        <v-form method="post" action="/" @submit.prevent="submit($event)" v-model="form.valid" netlify>
+        <v-form
+          name="Quarantinio Feedback"
+          method="post"
+          action="/"
+          @submit.prevent="submit($event)"
+          v-model="valid"
+          netlify
+          data-netlify-recaptcha="true"
+        >
+          <input name="form-name" value="Quarantinio Feedback" type="hidden" />
           <v-card elevation="2" color="primary darken-1" dark shaped>
             <v-card-text>
-              <v-text-field dark filled label="Name" name="name"></v-text-field>
-              <v-text-field dark filled label="Email" type="email" name="email"></v-text-field>
-              <v-textarea dark filled required label="Comments" name="comments" :rules="[v => !!v || 'Please enter your comments.']"></v-textarea>
+              <v-text-field
+                dark
+                filled
+                label="Name"
+                v-model="form.name"
+                name="email
+              "></v-text-field>
+              <v-text-field
+                dark
+                filled
+                label="Email"
+                v-model="form.email"
+                :rules="[v => /.+@.+/.test(v) || 'Please enter a valid email address.']"
+                name="email"
+              ></v-text-field>
+              <v-textarea
+                dark
+                filled
+                required
+                label="Comments"
+                v-model="form.comments"
+                name="comments"
+                :rules="[v => !!v || 'Please enter your comments.']"
+              ></v-textarea>
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
@@ -36,18 +66,29 @@
 
 <script>
   import axios from 'axios'
+  import qs from 'querystring'
 
   export default {
     data: () => ({
+      valid: false,
       form: {
-        valid: false,
+        'form-name': 'Quarantinio Feedback',
+        name: '',
+        email: '',
+        comments: '',
       }
     }),
     methods: {
-      async submit(e) {
+      async submit() {
         try {
-          const formdata = new FormData(e.target)
-          const result = await axios.post('/', {
+          const formdata = qs.stringify(this.form);
+          console.log(formdata);
+          const result = await axios({
+            method: 'post',
+            url: '/',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
             data: formdata,
           })
           console.log(result)
