@@ -35,6 +35,8 @@
 </template>
 
 <script>
+  import axios from 'axios'
+
   export default {
     data: () => ({
       form: {
@@ -42,9 +44,16 @@
       }
     }),
     methods: {
-      submit(e) {
-        console.log(e.target);
-        console.log(new FormData(e.target))
+      async submit(e) {
+        try {
+          const formdata = new FormData(e.target)
+          const result = await axios.post('/', {
+            data: formdata,
+          })
+          console.log(result)
+        } catch (error) {
+          console.log(error)
+        }
       }
     }
   }
