@@ -22,7 +22,6 @@
           @submit.prevent="submit($event)"
           v-model="valid"
           data-netlify="true"
-          data-netlify-recaptcha="true"
         >
           <input name="form-name" value="Quarantinio Feedback" type="hidden" />
           <v-card elevation="2" color="primary darken-1" dark shaped>
