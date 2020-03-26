@@ -14,7 +14,7 @@ const config = {
 }
 
 firebase.initializeApp(config)
-firebase.analytics()
+// firebase.analytics()
 const db = firebase.firestore()
 
 export { db }
