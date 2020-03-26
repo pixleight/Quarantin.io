@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label class="overline mb-2" for="gmap-autocomplete">Search for a Locaction:</label>
+    <label class="overline mb-2" for="gmap-autocomplete">Search for a Business:</label>
     <gmap-autocomplete
       id="gmap-autocomplete"
       @place_changed="setPlace"

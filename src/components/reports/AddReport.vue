@@ -16,7 +16,9 @@
           <v-toolbar-title>Add a Report</v-toolbar-title>
         </v-toolbar>
         <v-card-text class="flex-shrink-1 flex-grow-1">
-
+          <p>
+            Search for a business to add this report to:
+          </p>
           <location-search
             v-on:set-place="setPlace($event)"
             :error="placeError"
