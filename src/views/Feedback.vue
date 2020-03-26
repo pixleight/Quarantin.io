@@ -92,6 +92,7 @@
       valid: false,
       loading: false,
       form: {
+        'form-name': 'Quarantinio Feedback',
         name: '',
         email: '',
         comments: '',
@@ -109,10 +110,7 @@
 
           this.loading = true
 
-          const formdata = qs.stringify({
-            'form-name': 'Quarantinio Feedback',
-            ...this.form,
-          });
+          const formdata = qs.stringify(this.form);
 
           const slowdown = new Promise((resolve) => {
             setTimeout(resolve, 2000)
