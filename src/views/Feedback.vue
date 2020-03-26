@@ -24,7 +24,7 @@
           netlify
           data-netlify-recaptcha="true"
         >
-          <input name="form-name" value="Quarantin.io Feedback" type="hidden" />
+          <input name="form-name" value="Quarantinio Feedback" type="hidden" />
           <v-card elevation="2" color="primary darken-1" dark shaped>
             <v-card-text>
               <v-text-field
