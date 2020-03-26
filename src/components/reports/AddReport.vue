@@ -24,7 +24,7 @@
 
           <v-expansion-panels accordion multiple flat v-model="panels">
             <v-expansion-panel v-for="(cat, key) in form.products" :key="key">
-              <v-expansion-panel-header>
+              <v-expansion-panel-header class="px-0 title primary--text">
                 {{ cat.category }}
               </v-expansion-panel-header>
 
@@ -34,8 +34,8 @@
                     <v-switch v-model="product.include"></v-switch>
                   </v-col>
 
-                  <v-col cols="4">
-                    <h3>{{ product.name }}</h3>
+                  <v-col cols="5">
+                    <h3 class="subtitle-1">{{ product.name }}</h3>
                   </v-col>
 
                   <v-col>
@@ -145,7 +145,7 @@
         products: cat.items.map(product => ({
           name: product,
           quantity: 0,
-          include: true,
+          include: false,
         }))
       }))
     },
@@ -236,5 +236,10 @@
     max-width: 100%;
     min-width: 0px;
     width: 100%;
+  }
+
+  ::v-deep .v-expansion-panel-content__wrap {
+    padding-left: 0;
+    padding-right: 0;
   }
 </style>

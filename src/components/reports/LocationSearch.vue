@@ -1,24 +1,13 @@
 <template>
-  <div class="v-input theme--light v-text-field v-text-field--is-booted" :class="{ 'v-input--is-focused': focused, 'primary--text': focused && !error, 'error--text v-input--has-state': error, }">
-    <div class="v-input__control">
-      <div class="v-input__slot">
-        <div class="v-text-field__slot">
-          <label for="gmap-autocomplete" class="v-label v-label--active theme--light" :class="{ 'primary--text': focused && !error, 'error--text': error }" style="left: 0px; right: auto; position: absolute;">Search Location:</label>
-          <gmap-autocomplete
-            id="gmap-autocomplete"
-            @place_changed="setPlace"
-            class="gmap-autocomplete" @focus="focused = true" @blur="focused = false"></gmap-autocomplete>
-        </div>
-      </div>
-      <div class="v-text-field__details">
-        <div class="v-messages theme--light" :class="{ 'error--text' : error }" role="alert">
-          <div class="v-messages__wrapper">
-            <div class="v-messages__message" v-if="error">
-              Please select a location
-            </div>
-          </div>
-        </div>
-      </div>
+  <div>
+    <label class="overline mb-2" for="gmap-autocomplete">Search for a Locaction:</label>
+    <gmap-autocomplete
+      id="gmap-autocomplete"
+      @place_changed="setPlace"
+      class="gmap-autocomplete" @focus="focused = true" @blur="focused = false" :class="{ 'gmap-autocomplete--error': error }">
+    </gmap-autocomplete>
+    <div class="v-messages__message error--text" v-if="error">
+      Please select a location
     </div>
   </div>
 </template>
@@ -41,4 +30,25 @@
 
 <style lang="scss" scoped>
 
+input {
+  font-size: 1rem;
+  max-height: 32px;
+  flex: 1 1 auto;
+  line-height: 20px;
+  padding: 1.25rem 0.5rem;
+  max-width: 100%;
+  min-width: 0px;
+  width: 100%;
+  border: 1px solid var(--v-primary-lighten4);
+  margin-bottom: 0.5rem;
+  border-radius: 0.3rem;
+
+  &:focus {
+    border-color: var(--v-primary-darken1);
+  }
+}
+
+.gmap-autocomplete--autocomplete {
+  border-color: var(--v-error-base);
+}
 </style>
