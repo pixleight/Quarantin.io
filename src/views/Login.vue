@@ -80,14 +80,14 @@
         try {
           this.doLogin(this.form);
         } catch (error) {
-          console.error('login submit', error)
+          // console.error('login submit', error)
         }
       },
       async logout() {
         try {
           this.doLogout();
         } catch (error) {
-          console.error('logout', error);
+          // console.error('logout', error);
         }
       }
     },

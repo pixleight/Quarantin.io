@@ -15,7 +15,7 @@ export default {
         displayName: form.name,
       });
     } catch (error) {
-      console.error(`${Action.REGISTER}`, error);
+      // console.error(`${Action.REGISTER}`, error);
     }
   },
   [Action.FETCH]({ commit }, user) {
@@ -36,16 +36,16 @@ export default {
         .auth()
         .signInWithEmailAndPassword(form.email, form.password);
       
-      console.log(`${Action.LOGIN} result`, result);
+      return result
     } catch (error) {
-      console.error(`${Action.LOGIN}`, error);
+      // console.error(`${Action.LOGIN}`, error);
     }
   },
   async [Action.LOGOUT]() {
     try {
       await firebase.auth().signOut();
     } catch (error) {
-      console.error(`${Action.LOGOUT}`, error);
+      // console.error(`${Action.LOGOUT}`, error);
     }
   }
   // [Action.REGISTER]: firestoreAction(({context, form}) => {

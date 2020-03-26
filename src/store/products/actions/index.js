@@ -5,10 +5,8 @@ import { Action } from '../types'
 export default {
   [Action.INIT]: firestoreAction(({ bindFirestoreRef }) => {
     bindFirestoreRef('products', db.collection('products'))
-    console.log('Vuexfire/Firestore BindRef Action Initiated - store/products/actions/index.js')
   }),
   [Action.ADD_PRODUCT]: firestoreAction((context, product) => {
-    console.dir(product);
     return db.collection('products').add({
       type: product.type,
       amount: product.amount,

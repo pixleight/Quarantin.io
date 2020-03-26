@@ -5,7 +5,6 @@ import { Action } from '../types'
 export default {
   [Action.INIT]: firestoreAction(({ bindFirestoreRef }) => {
     bindFirestoreRef('reports', db.collection('reports'))
-    console.log('Vuexfire/Firestore BindRef Action Initiated - store/products/actions/index.js')
   }),
   [Action.ADD_REPORT]: firestoreAction(async (context, report) => {
     try {
@@ -18,7 +17,7 @@ export default {
       })
       return result;
     } catch (error) {
-      console.error(error);
+      // console.error(error);
     }
   }),
 }

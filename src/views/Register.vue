@@ -77,7 +77,7 @@
         try {
           this.doRegister(this.form);
         } catch (error) {
-          console.error('register submit', error)
+          // console.error('register submit', error)
         }
       }
     },

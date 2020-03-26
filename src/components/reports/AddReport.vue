@@ -204,7 +204,6 @@
             this.initializeData();
             this.toggleReportDialog(false)
           } catch (error) {
-            console.error(error);
             this.snackbar.type = 'error'
             this.snackbar.message = 'Oops! Something went wrong. Please try again.'
             this.snackbar.open = true
