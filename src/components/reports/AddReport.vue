@@ -22,6 +22,14 @@
             :error="placeError"
           ></location-search>
 
+          <p>
+            Use the switches below to select products you would like to submit with this report.
+          </p>
+
+          <p>
+            Use the sliders to estimate how much is available. The further left the slider is, the more empty you think the shelves are — just use your best judgement!
+          </p>
+
           <v-expansion-panels accordion multiple flat v-model="panels">
             <v-expansion-panel v-for="(cat, key) in form.products" :key="key">
               <v-expansion-panel-header class="px-0 title primary--text">
