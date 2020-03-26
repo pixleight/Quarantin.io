@@ -110,7 +110,7 @@
           this.loading = true
 
           const formdata = qs.stringify({
-            'form-name': 'Quarantin.io Feedback',
+            'form-name': 'Quarantinio Feedback',
             ...this.form,
           });
 
