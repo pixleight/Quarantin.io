@@ -1,5 +1,5 @@
-const path = require('path')
-const PrerenderSPAPlugin = require('prerender-spa-plugin')
+// const path = require('path')
+// const PrerenderSPAPlugin = require('prerender-spa-plugin')
 
 module.exports = {
   "transpileDependencies": [
@@ -7,8 +7,11 @@ module.exports = {
   ],
 
   pwa: {
+    name: 'Quarantin.io',
     themeColor: '#f9aa33',
     msTileColor: '#1d333e',
+    appleMobileWebAppCapable: 'yes',
+    appleMobileWebAppStatusBarStyle: 'black',
     manifestOptions: {
       background_color: '#1d333e'
     }
@@ -16,20 +19,20 @@ module.exports = {
 
   configureWebpack: () => {
     return {
-      plugins: [
-        new PrerenderSPAPlugin(
-          // Absolute path to compiled SPA
-          path.resolve(__dirname, 'dist'),
-          // List of routes to prerender
-          [
-            '/',
-            '/feedback',
-          ],
-          {
-            //options
-          }
-        ),
-      ]
+      // plugins: [
+      //   new PrerenderSPAPlugin(
+      //     // Absolute path to compiled SPA
+      //     path.resolve(__dirname, 'dist'),
+      //     // List of routes to prerender
+      //     [
+      //       '/',
+      //       '/feedback',
+      //     ],
+      //     {
+      //       //options
+      //     }
+      //   ),
+      // ]
     }
   }
 }
