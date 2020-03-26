@@ -21,7 +21,7 @@
           action="/"
           @submit.prevent="submit($event)"
           v-model="valid"
-          netlify
+          data-netlify="true"
           data-netlify-recaptcha="true"
         >
           <input name="form-name" value="Quarantinio Feedback" type="hidden" />
