@@ -24,10 +24,21 @@
 
     <v-spacer></v-spacer>
 
-    <v-btn text rounded to="/map">
+    <v-btn text rounded to="/map" aria-label="View Map">
       <v-icon left>mdi-map</v-icon>
       View Map
     </v-btn>
+
+    <v-tooltip bottom>
+      <template #activator="{ on: tooltip }">
+        <v-btn icon to="/feedback" v-on="{ ...tooltip }" aria-label="Feedback">
+          <v-icon>
+            mdi-help-circle
+          </v-icon>
+        </v-btn>
+      </template>
+      <span>Feedback</span>
+    </v-tooltip>
   </v-app-bar>
 </template>
 

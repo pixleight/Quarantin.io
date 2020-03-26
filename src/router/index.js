@@ -17,6 +17,11 @@ const routes = [
     name: 'Map',
     component: () => import(/* webpackChunkName: "map" */ '../views/Map.vue')
   },
+  {
+    path: '/feedback',
+    name: 'Feedback',
+    component: () => import(/* webpackChunkName: "feedback" */ '../views/Feedback.vue')
+  },
 ]
 
 const router = new VueRouter({

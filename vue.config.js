@@ -23,6 +23,7 @@ module.exports = {
           // List of routes to prerender
           [
             '/',
+            '/feedback',
           ],
           {
             //options
