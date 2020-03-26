@@ -22,7 +22,6 @@
           @submit.prevent="submit($event)"
           v-model="valid"
           data-netlify="true"
-          data-netlify-recaptcha="true"
         >
           <input name="form-name" value="Quarantinio Feedback" type="hidden" />
           <v-card elevation="2" color="primary darken-1" dark shaped>
@@ -92,6 +91,7 @@
       valid: false,
       loading: false,
       form: {
+        'form-name': 'Quarantinio Feedback',
         name: '',
         email: '',
         comments: '',
@@ -109,10 +109,7 @@
 
           this.loading = true
 
-          const formdata = qs.stringify({
-            'form-name': 'Quarantinio Feedback',
-            ...this.form,
-          });
+          const formdata = qs.stringify(this.form);
 
           const slowdown = new Promise((resolve) => {
             setTimeout(resolve, 2000)
