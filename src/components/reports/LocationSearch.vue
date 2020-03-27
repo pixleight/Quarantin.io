@@ -4,8 +4,12 @@
     <gmap-autocomplete
       id="gmap-autocomplete"
       @place_changed="setPlace"
-      class="gmap-autocomplete" @focus="focused = true" @blur="focused = false" :class="{ 'gmap-autocomplete--error': error }">
-    </gmap-autocomplete>
+      class="gmap-autocomplete"
+      @focus="focused = true"
+      @blur="focused = false"
+      :class="{ 'gmap-autocomplete--error': error }"
+      :types="['establishment']"
+    ></gmap-autocomplete>
     <div class="v-messages__message error--text" v-if="error">
       Please select a location
     </div>
