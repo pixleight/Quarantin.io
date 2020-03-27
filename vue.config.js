@@ -13,7 +13,8 @@ module.exports = {
     appleMobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: 'black',
     manifestOptions: {
-      background_color: '#1d333e'
+      background_color: '#1d333e',
+      theme_color: '#f9aa33',
     }
   },
 
