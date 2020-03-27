@@ -21,9 +21,8 @@
           action="/"
           @submit.prevent="submit($event)"
           v-model="valid"
-          data-netlify="true"
         >
-          <input name="form-name" value="Quarantinio Feedback" type="hidden" />
+          <input name="milkandhoney" value="" type="hidden" />
           <v-card elevation="2" color="primary darken-1" dark shaped>
             <v-card-text>
               <v-text-field
@@ -91,7 +90,6 @@
       valid: false,
       loading: false,
       form: {
-        'form-name': 'Quarantinio Feedback',
         name: '',
         email: '',
         comments: '',
@@ -111,15 +109,15 @@
 
           const formdata = qs.stringify(this.form);
 
-          const slowdown = new Promise((resolve) => {
-            setTimeout(resolve, 2000)
-          })
+          // const slowdown = new Promise((resolve) => {
+          //   setTimeout(resolve, 2000)
+          // })
 
-          await slowdown
+          // await slowdown
 
           await axios({
             method: 'post',
-            url: '/',
+            url: 'https://usebasin.com/f/9947b1774888',
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded',
             },
