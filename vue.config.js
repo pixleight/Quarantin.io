@@ -6,17 +6,17 @@ module.exports = {
     "vuetify"
   ],
 
-  pwa: {
-    name: 'Quarantin.io',
-    themeColor: '#f9aa33',
-    msTileColor: '#1d333e',
-    appleMobileWebAppCapable: 'yes',
-    appleMobileWebAppStatusBarStyle: 'black',
-    manifestOptions: {
-      background_color: '#1d333e',
-      theme_color: '#f9aa33',
-    }
-  },
+  // pwa: {
+  //   name: 'Quarantin.io',
+  //   themeColor: '#f9aa33',
+  //   msTileColor: '#1d333e',
+  //   appleMobileWebAppCapable: 'yes',
+  //   appleMobileWebAppStatusBarStyle: 'black',
+  //   manifestOptions: {
+  //     background_color: '#1d333e',
+  //     theme_color: '#f9aa33',
+  //   }
+  // },
 
   configureWebpack: () => {
     return {
