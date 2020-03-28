@@ -4,7 +4,6 @@
     :fullscreen="$vuetify.breakpoint.xsOnly"
     scrollable transition="dialog-top-transition"
     max-width="500"
-    persistent
   >
       <v-card tile>
         <v-toolbar dark flat color="secondary">
@@ -14,30 +13,43 @@
           <v-toolbar-title>Thank You for Your Support</v-toolbar-title>
         </v-toolbar>
         <v-card-text>
-          <p class="title">The immediate success of this little project has been unbelievable.</p>
+
+          <p class="title">
+            <strong>Thank you so much for your patience.</strong>
+          </p>
+
+          <p class="title">
+            After a marathon day of coding, I've updated the reporting feature, and it's now available to use again.
+          </p>
+
           <p class="subtitle-1">
-            In the 2 days since going live, thousands of people across the country have added reports to help their neighbors find important supplies during these tough times. When I started this, I never imagined the kind of impact it would have, and how quickly.
+            This project has been fun to work on, and I'm amazed at the response it's received.
           </p>
+
           <p class="subtitle-1">
-            Unfortunately, that success comes at a high cost.<br>
-            I sadly need to temporarily suspend adding new reports while I reevaluate the process.
-            
-          <p>
-            <strong><em>In order to keep up with ongoing costs and keep this site up, I am asking for your support.</em></strong>
+            There will continue to be hurdles to overcome, so I still ask that you please consider donating to help support the running of this site. Every bit helps, and a project of this size does come with a cost.
           </p>
+
           <p>
-            Please, consider making a donation using the link below. I cannot thank you enough for your generosity.
+            For those of you who have already donated, I cannot thank you enough for your contributions.
           </p>
+
+          <p>
+            Stay safe, and I hope you enjoy my app.
+          </p>
+
+          <p>
+            Cheers,
+            Chris
+          </p>
+
           <v-btn rounded block color="secondary" class="mb-4 primary--text text--darken-2" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=DBXMNAK56BSC2&item_name=Supporting+Quarantin.io&currency_code=USD&source=url" target="_blank">
             Donate with PayPal <v-icon right>mdi-credit-card-outline</v-icon>
           </v-btn>
-          <p>
-            From the bottom of my heart, thank you for your support.
-          </p>
-          <p>
-            Stay safe,<br>
-            Chris
-          </p>
+          
+          <v-btn small block text color="primary" class="mb-4 mx-auto" @click="setDonateDialog(false)">
+            Close
+          </v-btn>
         </v-card-text>
       </v-card>
   </v-dialog>

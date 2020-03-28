@@ -13,4 +13,7 @@ export default {
   [Mutation.SET_DONATE_DIALOG](state, payload) {
     state.donateDialog = payload;
   },
+  [Mutation.SET_MAP_OBJECT](state, payload) {
+    state.map = payload;
+  },
 }
