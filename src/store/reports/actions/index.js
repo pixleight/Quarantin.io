@@ -1,6 +1,6 @@
 import { firestoreAction } from 'vuexfire'
 import { db, GeoPoint, Timestamp } from '@/firebase'
-import { Action } from '../types'
+import { Action, Mutation } from '../types'
 
 export default {
   [Action.INIT]: firestoreAction(async ({ bindFirestoreRef }) => {
@@ -21,7 +21,27 @@ export default {
       })
       return result;
     } catch (error) {
-      // console.error(error);
+      //
     }
   }),
+  async [Action.GEO_QUERY]({commit}, mapBounds) {
+
+    const upperLat = mapBounds.getNorthEast().lat();
+    const upperLon = mapBounds.getNorthEast().lng();
+    const lowerLat = mapBounds.getSouthWest().lat();
+    const lowerLon = mapBounds.getSouthWest().lng();
+
+    let lesserGeopoint = new GeoPoint(lowerLat, lowerLon);
+    let greaterGeopoint = new GeoPoint(upperLat, upperLon);
+
+
+    await db.collection('reports')
+      .where('geo', '>', lesserGeopoint)
+      .where('geo', '<', greaterGeopoint)
+      .get().then(querySnapshot => {
+        const documents = querySnapshot.docs.map(doc => doc.data());
+        commit(Mutation.SET_REPORTS, documents);
+        return;
+      });
+  },
 }

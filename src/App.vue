@@ -51,10 +51,10 @@ export default {
     }),
   },
   created() {
-    this.setLoading(true);
+    // this.setLoading(true);
   },
   mounted() {
-    this.setLoading(false);
+    // this.setLoading(false);
   }
 };
 </script>
