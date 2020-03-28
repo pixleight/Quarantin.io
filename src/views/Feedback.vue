@@ -84,6 +84,8 @@
 <script>
   import axios from 'axios'
   import qs from 'querystring'
+  import { mapMutations } from 'vuex'
+  import { Mutation as AppMutation } from '@/store/app/types'
 
   export default {
     data: () => ({
@@ -101,6 +103,9 @@
       }
     }),
     methods: {
+      ...mapMutations('app', {
+        setLoading: AppMutation.SET_LOADING,
+      }),
       async submit() {
         try {
           if (!this.$refs.feedback.validate()) return;
@@ -144,6 +149,9 @@
           this.loading = false;
         }
       }
+    },
+    mounted() {
+      this.setLoading(false);
     }
   }
 </script>

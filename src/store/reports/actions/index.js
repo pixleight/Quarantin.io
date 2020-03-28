@@ -3,8 +3,12 @@ import { db, GeoPoint, Timestamp } from '@/firebase'
 import { Action } from '../types'
 
 export default {
-  [Action.INIT]: firestoreAction(({ bindFirestoreRef }) => {
-    bindFirestoreRef('reports', db.collection('reports'))
+  [Action.INIT]: firestoreAction(async ({ bindFirestoreRef }) => {
+    try {
+      await bindFirestoreRef('reports', db.collection('reports'))
+    } catch (error) {
+      //
+    }
   }),
   [Action.ADD_REPORT]: firestoreAction(async (context, report) => {
     try {

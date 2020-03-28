@@ -11,9 +11,10 @@
 </template>
 
 <script>
-  import { mapActions, mapGetters, mapState } from 'vuex'
+  import { mapActions, mapGetters, mapState, mapMutations } from 'vuex'
   import ReportMarkers from '@/components/reports/Markers'
   import { Action as AppAction } from '@/store/app/types'
+  import { Mutation as AppMutation } from '@/store/app/types'
   import { Action as ReportAction } from '@/store/reports/types'
   import { Getter as ReportGetter } from '@/store/reports/types'
 
@@ -43,9 +44,12 @@
       ...mapActions('app', {
         geolocate: AppAction.GEOLOCATE,
       }),
+      ...mapMutations('app', {
+        setLoading: AppMutation.SET_LOADING,
+      })
     },
     created() {
-      this.init();
+      this.setLoading(true);
     },
     async mounted() {
       try {
@@ -56,6 +60,9 @@
         }
       } catch (error) {
         //
+      } finally {
+        await this.init();
+        this.setLoading(false);
       }
     }
   }

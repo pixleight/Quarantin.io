@@ -8,11 +8,14 @@
 
     <app-footer></app-footer>
     <add-report></add-report>
+    <v-overlay :value="loading">
+      <v-progress-circular indeterminate size="64"></v-progress-circular>
+    </v-overlay>
   </v-app>
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import {
   Mutation as AppMutation
 } from '@/store/app/types'
@@ -31,6 +34,11 @@ export default {
   data: () => ({
     filterDrawer: false,
   }),
+  computed: {
+    ...mapState('app', {
+      loading: state => state.loading,
+    }),
+  },
   components: {
     AppHeader,
     AppFooter,
@@ -38,8 +46,15 @@ export default {
   },
   methods: {
     ...mapMutations('app', {
+      setLoading: AppMutation.SET_LOADING,
       toggleReportDialog: AppMutation.SET_REPORT_DIALOG,
     }),
+  },
+  created() {
+    this.setLoading(true);
+  },
+  mounted() {
+    this.setLoading(false);
   }
 };
 </script>
