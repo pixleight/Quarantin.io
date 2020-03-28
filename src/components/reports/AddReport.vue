@@ -43,19 +43,19 @@
     mapState,
     mapMutations,
   } from 'vuex'
-  import VueRecaptcha from 'vue-recaptcha'
+  // import VueRecaptcha from 'vue-recaptcha'
   import {
     Action as ReportAction
   } from '@/store/reports/types'
   import {
     Mutation as AppMutation
   } from '@/store/app/types'
-  import LocationSearch from './LocationSearch'
+  // import LocationSearch from './LocationSearch'
 
   export default {
     components: {
-      LocationSearch,
-      VueRecaptcha,
+      // LocationSearch,
+      // VueRecaptcha,
     },
     computed: {
       ...mapState('app', {
