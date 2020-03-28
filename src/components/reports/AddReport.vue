@@ -246,7 +246,7 @@
       },
       async selectLocation(placeId) {
         this.placeLoading = true;
-        const proxyurl = process.env.NODE_ENV === 'production' ? '' : 'https://cors-anywhere.herokuapp.com/';
+        const proxyurl = 'https://cors-anywhere.herokuapp.com/';
         const url = 'https://maps.googleapis.com/maps/api/place/details/json'
         const results = await axios({
           method: 'get',

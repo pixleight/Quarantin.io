@@ -160,7 +160,7 @@
         geolocate: AppAction.GEOLOCATE,
       }),
       async search() {
-        const proxyurl = process.env.NODE_ENV === 'production' ? '' : 'https://cors-anywhere.herokuapp.com/';
+        const proxyurl = 'https://cors-anywhere.herokuapp.com/';
         const url = 'https://maps.googleapis.com/maps/api/place/autocomplete/json'
         this.loading = true;
         const radiusMeters = this.radius * 1609.34;
