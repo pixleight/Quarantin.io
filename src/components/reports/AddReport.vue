@@ -16,69 +16,17 @@
           <v-toolbar-title>Add a Report</v-toolbar-title>
         </v-toolbar>
         <v-card-text class="flex-shrink-1 flex-grow-1">
-          <p>
-            Search for a business to add this report to:
-          </p>
-          <location-search
-            v-on:set-place="setPlace($event)"
-            :error="placeError"
-          ></location-search>
-
-          <p>
-            Use the switches below to select products you would like to submit with this report.
-          </p>
-
-          <p>
-            Use the sliders to estimate how much is available. The further left the slider is, the more empty you think the shelves are — just use your best judgement!
-          </p>
-
-          <v-expansion-panels accordion multiple flat v-model="panels">
-            <v-expansion-panel v-for="(cat, key) in form.products" :key="key">
-              <v-expansion-panel-header class="px-0 title primary--text">
-                {{ cat.category }}
-              </v-expansion-panel-header>
-
-              <v-expansion-panel-content>
-                <v-row v-for="(product, key) in cat.products" :key="key" align="center" dense>
-                  <v-col cols="auto">
-                    <v-switch v-model="product.include"></v-switch>
-                  </v-col>
-
-                  <v-col cols="5">
-                    <h3 class="subtitle-1">{{ product.name }}</h3>
-                  </v-col>
-
-                  <v-col>
-                    <v-slider
-                      v-model="product.quantity"
-                      :min="0"
-                      :max="10"
-                      :step="0.1"
-                      hide-details
-                      :disabled="!product.include"
-                    ></v-slider>
-                  </v-col>
-                </v-row>
-              </v-expansion-panel-content>
-            </v-expansion-panel>
-          </v-expansion-panels>
+          <p><strong>Undergoing maintenance</strong></p>
+          <p>Features are being added to better serve you. Please check back soon. </p>
           <div style="flex: 1 1 100%;"></div>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <vue-recaptcha
-            ref="invisibleRecaptcha"
-            :loadRecaptchaScript="true"
-            @verify="onVerify"
-            @expired="onExpired"
-            sitekey="6LfxOOMUAAAAAJNK4is1DKsmlwWt6-QDvYoDC7NN"
-          ></vue-recaptcha>
+          
         </v-card-actions>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn type="submit" color="primary" :disabled="bot">
-            Add
-          </v-btn>
+          
           <v-btn color="seconary" text @click="cancel">
             Cancel
           </v-btn>
