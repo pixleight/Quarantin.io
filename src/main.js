@@ -11,6 +11,15 @@ import store from './store'
 import { Action as UserAction } from './store/user/types'
 import vuetify from './plugins/vuetify';
 
+if(window.navigator && navigator.serviceWorker) {
+  navigator.serviceWorker.getRegistrations()
+  .then(function(registrations) {
+    for(let registration of registrations) {
+      registration.unregister();
+    }
+  });
+}
+
 Vue.config.productionTip = false
 
 firebase.auth().onAuthStateChanged(user => {
