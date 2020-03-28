@@ -26,22 +26,30 @@
           <v-toolbar-title>Search for a Business</v-toolbar-title>
         </v-toolbar>
         <v-card-text>
-          <v-row v-if="!geolocation">
-            <v-col cols="12">
+          <div v-if="!geolocation">
+            <v-alert type="info" class="mt-4">
               It looks like your location services are turned off! For best results, enable them or go to the map to start a new report.
-            </v-col>
-            <v-col>
-              <v-btn block color="secondary" class="primary--text" @click="geolocate">
-                <v-icon left>mdi-crosshairs-gps</v-icon> Check Again
-              </v-btn>
-            </v-col>
-            <v-col>
-              <v-btn to="/map" block color="secondary" class="primary--text">
-                <v-icon left>mdi-map</v-icon> View Map
-              </v-btn>
-            </v-col>
-          </v-row>
+            </v-alert>
+            <v-row>
+              <v-col>
+                <v-btn block color="secondary" class="primary--text" @click="tryGeolocate">
+                  <v-icon left>mdi-crosshairs-gps</v-icon> I've turned them on, check again
+                </v-btn>
+              </v-col>
+              <v-col v-if="$route.name !== 'Map'">
+                <v-btn to="/map" block color="secondary" class="primary--text">
+                  <v-icon left>mdi-map</v-icon> View Map
+                </v-btn>
+              </v-col>
+            </v-row>
+          </div>
+
           <v-row>
+            <v-col>
+              Searching by: {{ searchingByText }}
+              <v-btn @click="searchBy = 'geo'" v-if="!!geolocation && searchBy == 'map'" small color="secondary" class="primary--text">Switch to my current location</v-btn>
+              <v-btn @click="searchBy = 'map'" v-if="!!map && searchBy == 'geo'" small color="secondary" class="primary--text">Switch to current map location</v-btn>
+            </v-col>
             <v-col cols="12">
               <v-text-field
                 label="Search"
@@ -49,6 +57,7 @@
                 autofocus
                 hide-details
                 @keydown.enter="search"
+                :disabled="!searchBy"
               ></v-text-field>
             </v-col>
             <v-col>
@@ -59,6 +68,7 @@
                 suffix="miles"
                 hide-details
                 @keydown.enter="search"
+                :disabled="!searchBy"
               ></v-text-field>
             </v-col>
             <v-col cols="auto">
@@ -123,15 +133,26 @@
       radius: 10,
       searchResults: [],
       selected: 0,
+      searchBy: '',
     }),
     computed: {
       ...mapState('app', {
         geolocation: state => state.geolocation,
         sessionToken: state => state.sessionToken,
+        map: state => state.map,
       }),
       selectedId() {
         if(!this.searchResults.length) return;
         return this.searchResults[this.selected].place_id;
+      },
+      searchingByText() {
+        if (this.geolocation && this.searchBy == 'geo') {
+          return 'Current Location'
+        }
+        if (this.map && this.searchBy == 'map') {
+          return 'Map Location'
+        }
+        return '';
       }
     },
     methods: {
@@ -143,6 +164,17 @@
         const url = 'https://maps.googleapis.com/maps/api/place/autocomplete/json'
         this.loading = true;
         const radiusMeters = this.radius * 1609.34;
+
+        let location = ''
+
+        if (this.searchBy == 'geo') {
+          location = `${this.geolocation.lat},${this.geolocation.lng}`
+        } else if (this.searchBy == 'map') {
+          location = `${this.map.center.lat()},${this.map.center.lng()}`
+        } else {
+          return
+        }
+
         const results = await axios({
           method: 'get',
           url: proxyurl + url,
@@ -154,7 +186,7 @@
             inputtype: 'textquery',
             input: this.query,
             types: 'establishment',
-            location: `${this.geolocation.lat},${this.geolocation.lng}`,
+            location: location,
             radius: radiusMeters,
             // fields: 'name,place_id,geometry/location,formatted_address',
           },
@@ -167,10 +199,21 @@
         this.$emit('select-location', this.selectedId)
         this.dialog = false;
       },
+      tryGeolocate() {
+        this.geolocate().then(() => {
+          this.searchBy = 'geo';
+        })
+      }
     },
-    mounted() {
-      this.geolocate();
-    }
+    async mounted() {
+      // await this.geolocate();
+      
+      if( this.map ) {
+        this.searchBy = 'map';
+      } else if ( this.geolocation ) {
+        this.searchBy = 'geo';
+      }
+    },
   }
 </script>
 
