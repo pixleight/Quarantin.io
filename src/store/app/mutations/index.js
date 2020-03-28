@@ -9,5 +9,8 @@ export default {
   },
   [Mutation.SET_REPORT_DIALOG](state, payload) {
     state.reportDialog = payload;
-  }
+  },
+  [Mutation.SET_DONATE_DIALOG](state, payload) {
+    state.donateDialog = payload;
+  },
 }

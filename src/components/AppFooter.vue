@@ -25,14 +25,6 @@
         </v-col>
         <v-spacer></v-spacer>
         <v-col cols="5" sm="auto">
-          <v-tooltip top color="#ff813f" dark nudge-top="16">
-            <template v-slot:activator="{ on }">
-                <a v-on="on" class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/T59nQiD">
-                  <img class="bmc-button__img" src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee">
-                </a>
-            </template>
-            <span>Help support development of this site</span>
-          </v-tooltip>
         </v-col>
       </v-row>
     </v-container>
@@ -53,7 +45,7 @@
   export default {
     methods: {
       ...mapMutations('app', {
-        toggleReportDialog: AppMutation.SET_REPORT_DIALOG,
+        toggleReportDialog: AppMutation.SET_DONATE_DIALOG,
       }),
     }
   }
