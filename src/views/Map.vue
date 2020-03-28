@@ -1,6 +1,7 @@
 <template>
   <v-container fluid fill-height>
     <GmapMap
+      ref="mapRef"
       :center="center"
       :zoom="zoom"
       style="width: 100%; height: 100%"
@@ -39,13 +40,14 @@
     methods: {
       ...mapActions('reports', {
         init: ReportAction.INIT,
+        geoQuery: ReportAction.GEO_QUERY,
       }),
       ...mapActions('app', {
         geolocate: AppAction.GEOLOCATE,
       }),
     },
     created() {
-      this.init();
+      // this.init();
     },
     async mounted() {
       try {
@@ -53,9 +55,18 @@
         if (this.appGeo) {
           this.center = this.appGeo;
           this.zoom = 10;
+          console.log(this.appGeo);
+          // const lat = this.$refs.mapRef.$mapObject.getCenter().lat();
+          // const lon = this.$refs.mapRef.$mapObject.getCenter().lng();
+          // console.log('lat log', lat, lon);
+          // const mapCenter = this.$refs.mapRef.$mapObject.getCenter();
         }
       } catch (error) {
         //
+      } finally {
+        console.log('geoquery');
+        const mapBounds = this.$refs.mapRef.$mapObject.getBounds();
+        await this.geoQuery(mapBounds);
       }
     }
   }
