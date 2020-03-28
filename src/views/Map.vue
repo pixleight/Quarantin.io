@@ -1,10 +1,16 @@
 <template>
   <v-container fluid fill-height>
+    <v-slide-y-transition>
+      <v-btn color="secondary" absolute top rounded v-if="newSearchButton.show" @click="startNewSearch" class="search-area primary--text text--darken-1">
+        Search This Area
+      </v-btn>
+    </v-slide-y-transition>
     <GmapMap
       ref="mapRef"
       :center="center"
       :zoom="zoom"
       style="width: 100%; height: 100%"
+      @dragend="newAreaSearch"
     >
       <report-markers></report-markers>
     </GmapMap>
@@ -12,6 +18,7 @@
 </template>
 
 <script>
+  // import _ from 'lodash'
   import { mapActions, mapGetters, mapState, mapMutations } from 'vuex'
   import ReportMarkers from '@/components/reports/Markers'
   import { Action as AppAction } from '@/store/app/types'
@@ -26,6 +33,11 @@
     data: () => ({
       center: {lat: 39.833333, lng: -98.583333},
       zoom: 4,
+      map: null,
+      newSearchButton: {
+        show: false,
+        loading: false,
+      },
     }),
     components: {
       ReportMarkers,
@@ -48,30 +60,49 @@
       }),
       ...mapMutations('app', {
         setLoading: AppMutation.SET_LOADING,
-      })
+      }),
+      async geoSearch() {
+        try {
+          const mapBounds = this.$refs.mapRef.$mapObject.getBounds()
+          await this.geoQuery(mapBounds).then(() => {
+            return;
+          })
+        } catch (error) {
+          //
+        }
+      },
+      newAreaSearch() {
+        if( !this.newSearchButton.show ) {
+          this.newSearchButton.show = true;
+        }
+      },
+      async startNewSearch() {
+        try {
+          this.setLoading(true);
+          this.newSearchButton.show = false;
+          await this.geoSearch();
+          this.setLoading(false);
+        } catch (error) {
+          //
+        }
+      },
     },
-    created() {
+    async created() {
       this.setLoading(true);
     },
     async mounted() {
       try {
+        const map = await this.$refs.mapRef.$mapPromise;
         await this.geolocate();
         if (this.appGeo) {
-          this.center = this.appGeo;
-          this.zoom = 10;
-          console.log(this.appGeo);
-          // const lat = this.$refs.mapRef.$mapObject.getCenter().lat();
-          // const lon = this.$refs.mapRef.$mapObject.getCenter().lng();
-          // console.log('lat log', lat, lon);
-          // const mapCenter = this.$refs.mapRef.$mapObject.getCenter();
+          await map.panTo(this.appGeo);
+          await map.setZoom(13);
         }
+        await this.geoSearch();
       } catch (error) {
         //
       } finally {
-        console.log('geoquery');
-        const mapBounds = this.$refs.mapRef.$mapObject.getBounds();
-        await this.geoQuery(mapBounds);
-		this.setLoading(false);
+        this.setLoading(false);
       }
     }
   }
@@ -80,5 +111,10 @@
 <style lang="scss" scoped>
 .container {
   padding: 0;
+}
+.search-area {
+  z-index: 5;
+  left: 50%;
+  transform: translateX(-50%);
 }
 </style>

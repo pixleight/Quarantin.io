@@ -110,7 +110,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations} from 'vuex';
+import { Mutation as AppMutation } from '@/store/app/types'
 import { Getter as ReportGetter } from '@/store/reports/types'
 
 export default {
@@ -121,7 +122,15 @@ export default {
     ...mapGetters('reports', {
       groupedReports: ReportGetter.GROUPED_REPORTS,
     }),
-  }
+  },
+  methods: {
+    ...mapMutations('app', {
+      setLoading: AppMutation.SET_LOADING,
+    }),
+  },
+  mounted() {
+    this.setLoading(false);
+  },
 }
 </script>
 
