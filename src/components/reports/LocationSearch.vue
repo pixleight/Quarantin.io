@@ -34,7 +34,7 @@
         this.$emit('set-place', place);
       },
       async search() {
-        const proxyurl = 'https://cors-anywhere.herokuapp.com/';
+        const proxyurl = process.env.NODE_ENV === 'production' ? '' : 'https://cors-anywhere.herokuapp.com/';
         const url = 'https://maps.googleapis.com/maps/api/place/autocomplete/json'
         const results = await axios({
           method: 'get',
