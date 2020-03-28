@@ -25,6 +25,9 @@
         </v-col>
         <v-spacer></v-spacer>
         <v-col cols="5" sm="auto">
+          <v-btn large rounded color="secondary" class="primary--text text--darken-2" @click="toggleDonateDialog(true)">
+            Donate
+          </v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -45,7 +48,8 @@
   export default {
     methods: {
       ...mapMutations('app', {
-        toggleReportDialog: AppMutation.SET_DONATE_DIALOG,
+        toggleReportDialog: AppMutation.SET_REPORT_DIALOG,
+        toggleDonateDialog: AppMutation.SET_DONATE_DIALOG,
       }),
     }
   }

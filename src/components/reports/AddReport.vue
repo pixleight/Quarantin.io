@@ -16,8 +16,22 @@
           <v-toolbar-title>Add a Report</v-toolbar-title>
         </v-toolbar>
         <v-card-text class="flex-shrink-1 flex-grow-1">
-          <p><strong>Undergoing maintenance</strong></p>
-          <p>Features are being added to better serve you. Please check back soon. </p>
+          <p class="title">Undergoing Maintenance</p>
+          <p>
+            Due to rising costs, this feature is currently being reworked.
+          </p>
+          <p>
+            Thank you for your patience and support. If you are able, please consider donating to help support this site.
+          </p>
+          <p>
+            <v-btn small color="secondary" class="primary--text text--darken-2" @click="donate">Donate</v-btn>
+          </p>
+          <p>
+            In the meantime, I wish you all the very best.</p>
+          <p>
+            Stay safe.<br>
+            — Chris
+          </p>
           <div style="flex: 1 1 100%;"></div>
         </v-card-text>
         <v-card-actions>
@@ -113,7 +127,12 @@
       }),
       ...mapMutations('app', {
         toggleReportDialog: AppMutation.SET_REPORT_DIALOG,
+        toggleDonateDialog: AppMutation.SET_DONATE_DIALOG,
       }),
+      donate() {
+        this.toggleReportDialog(false);
+        this.toggleDonateDialog(true);
+      },
       initializeData() {
         this.valid = false;
         this.placeError = false;

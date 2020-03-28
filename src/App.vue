@@ -55,6 +55,9 @@ export default {
   },
   created() {
     // this.setLoading(true);
+  },
+  mounted() {
+    // this.setLoading(false);
     if(window.navigator && navigator.serviceWorker) {
       navigator.serviceWorker.getRegistrations()
       .then(function(registrations) {
@@ -63,9 +66,6 @@ export default {
         }
       });
     }
-  },
-  mounted() {
-    // this.setLoading(false);
   }
 };
 </script>
