@@ -1,14 +1,20 @@
-workbox.core.setCacheNameDetails({ prefix: 'd4' })
+workbox.core.setCacheNameDetails({prefix: "quarantinio"});
+
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});
 
 //Change this value every time before you build
-const LATEST_VERSION = 'v1.1'
+const LATEST_VERSION = 'v1.2'
 
 self.addEventListener('activate', (event) => {
   console.log(`%c ${LATEST_VERSION} `, 'background: #ddd; color: #0000ff')
   if (caches) {
     caches.keys().then((arr) => {
       arr.forEach((key) => {
-        if (key.indexOf('d4-precache') < -1) {
+        if (key.indexOf('quarantinio-precache') < -1) {
           caches.delete(key).then(() => console.log(`%c Cleared ${key}`, 'background: #333; color: #ff0000'))
         } else {
           caches.open(key).then((cache) => {
@@ -26,9 +32,9 @@ self.addEventListener('activate', (event) => {
   }
 })
 
-workbox.skipWaiting()
-workbox.clientsClaim()
+// workbox.skipWaiting()
+// workbox.clientsClaim()
 
 self.__precacheManifest = [].concat(self.__precacheManifest || [])
-workbox.precaching.suppressWarnings()
+// workbox.precaching.suppressWarnings()
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {})

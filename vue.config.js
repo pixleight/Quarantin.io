@@ -19,6 +19,8 @@ module.exports = {
     workboxPluginMode: 'InjectManifest',
     workboxOptions: {
       swSrc: 'service-worker.js',
+      // skipWaiting: true,
+      // clientsClaim: true,
     },
   },
 
