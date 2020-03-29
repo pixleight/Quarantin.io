@@ -4,6 +4,8 @@
       v-model="dialog"
       max-width="500"
       persistent
+      :fullscreen="$vuetify.breakpoint.xsOnly"
+      :hide-overlay="$vuetify.breakpoint.xsOnly"
     >
       <template #activator="{ on }">
         <v-btn
@@ -18,7 +20,7 @@
         </v-btn>
       </template>
 
-      <v-card>
+      <v-card tile>
         <v-toolbar dark flat color="primary">
           <v-btn icon dark @click="dialog = false">
             <v-icon>mdi-close</v-icon>
@@ -33,7 +35,7 @@
             <v-row>
               <v-col>
                 <v-btn block color="secondary" class="primary--text" @click="tryGeolocate">
-                  <v-icon left>mdi-crosshairs-gps</v-icon> I've turned them on, check again
+                  <v-icon left>mdi-crosshairs-gps</v-icon> Check Again
                 </v-btn>
               </v-col>
               <v-col v-if="$route.name !== 'Map'">
