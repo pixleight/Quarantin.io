@@ -1,7 +1,6 @@
 <template>
   <v-dialog
     v-model="donateDialog"
-    :fullscreen="$vuetify.breakpoint.xsOnly"
     scrollable transition="dialog-top-transition"
     max-width="500"
   >
