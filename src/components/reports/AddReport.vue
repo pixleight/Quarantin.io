@@ -222,26 +222,24 @@
           this.placeError = true;
           return false;
         }
+        try {
+          await this.addReport({
+            place: this.form.place,
+            geo: this.form.place.geometry.location,
+            products: this.form.products,
+          });
+          
+          this.snackbar.type = 'success'
+          this.snackbar.message = 'Thank you! Report added successfully.'
+          this.snackbar.open = true
 
-        if (!this.placeError) {
-          try {
-            await this.addReport({
-              place: this.form.place,
-              geo: this.form.geo,
-              products: this.form.products,
-            });
-            
-            this.snackbar.type = 'success'
-            this.snackbar.message = 'Thank you! Report added successfully.'
-            this.snackbar.open = true
-
-            this.initializeData();
-            this.toggleReportDialog(false)
-          } catch (error) {
-            this.snackbar.type = 'error'
-            this.snackbar.message = 'Oops! Something went wrong. Please try again.'
-            this.snackbar.open = true
-          }
+          this.initializeData();
+          this.toggleReportDialog(false)
+        } catch (error) {
+          console.error(error);
+          this.snackbar.type = 'error'
+          this.snackbar.message = 'Oops! Something went wrong. Please try again.'
+          this.snackbar.open = true
         }
       },
       async selectLocation(placeId) {

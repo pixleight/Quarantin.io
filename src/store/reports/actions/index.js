@@ -21,7 +21,7 @@ export default {
       })
       return result;
     } catch (error) {
-      //
+      console.error(error);
     }
   }),
   async [Action.GEO_QUERY]({commit}, mapBounds) {
