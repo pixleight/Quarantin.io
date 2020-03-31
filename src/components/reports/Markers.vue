@@ -1,12 +1,10 @@
 <template>
   <div>
-    <gmap-cluster>
       <report-marker
         v-for="(r, i) in reports"
         :key="i"
         :reports="r"
       ></report-marker>
-    </gmap-cluster>
   </div>
 </template>
 

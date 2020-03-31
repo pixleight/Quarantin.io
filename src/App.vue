@@ -8,7 +8,6 @@
 
     <app-footer></app-footer>
     <add-report></add-report>
-    <donate-dialog></donate-dialog>
     <v-overlay :value="loading">
       <v-progress-circular indeterminate size="64"></v-progress-circular>
     </v-overlay>
@@ -23,7 +22,6 @@ import {
 import AppHeader from '@/components/AppHeader';
 import AppFooter from '@/components/AppFooter';
 import AddReport from '@/components/reports/AddReport'
-import DonateDialog from '@/components/DonateDialog'
 
 export default {
   name: 'App',
@@ -45,7 +43,6 @@ export default {
     AppHeader,
     AppFooter,
     AddReport,
-    DonateDialog,
   },
   methods: {
     ...mapMutations('app', {
