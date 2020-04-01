@@ -19,7 +19,7 @@
           </v-col>
           <v-col cols="12" md="6">
             <v-card shaped elevation="5">
-              <v-img src="img/shopping-hero.jpg" />
+              <img src="img/shopping-hero.jpg" />
             </v-card>
           </v-col>
           <v-col cols="12">
