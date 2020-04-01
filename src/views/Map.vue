@@ -70,6 +70,7 @@
       ...mapActions('reports', {
         init: ReportAction.INIT,
         geoQuery: ReportAction.GEO_QUERY,
+        getPlaces: ReportAction.GET_PLACES,
       }),
       ...mapActions('app', {
         geolocate: AppAction.GEOLOCATE,
@@ -118,6 +119,7 @@
           this.currentZoom = 13;
         }
         await this.geoSearch();
+        await this.getPlaces();
       } catch (error) {
         this.newSearchButton.show = true;
       } finally {

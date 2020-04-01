@@ -1,26 +1,25 @@
 <template>
   <div>
-      <report-marker
-        v-for="(r, i) in reports"
-        :key="i"
-        :reports="r"
-      ></report-marker>
+      <place-marker
+        v-for="p in places"
+        :key="p.place_id"
+        :place="p"
+      ></place-marker>
   </div>
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
-  import { Getter as ReportGetter } from '@/store/reports/types'
-  import ReportMarker from './Marker'
+  import { mapState } from 'vuex'
+  import PlaceMarker from './PlaceMarker'
 
   export default {
     data: () => ({}),
     components: {
-      ReportMarker,
+      PlaceMarker,
     },
     computed: {
-      ...mapGetters('reports', {
-        reports: ReportGetter.GROUPED_REPORTS,
+      ...mapState('reports', {
+        places: state => state.places,
       }),
     },
   }
