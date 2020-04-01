@@ -19,5 +19,10 @@ service cloud.firestore {
     	allow read: if true;
       allow create: if true;
     }
+
+    // Allow users to get only documents
+    match /places/{document=**} {
+    	allow read: if true;
+    }
   }
 }
