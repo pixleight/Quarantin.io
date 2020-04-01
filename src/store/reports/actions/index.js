@@ -10,8 +10,16 @@ export default {
       //
     }
   }),
+  [Action.GET_PLACES]: firestoreAction(async ({ bindFirestoreRef }) => {
+    try {
+      await bindFirestoreRef('places', db.collection('places'))
+    } catch (error) {
+      //
+    }
+  }),
   [Action.ADD_REPORT]: firestoreAction(async (context, report) => {
     try {
+      console.log('products', report.products)
       const result = await db.collection('reports').add({
         place: report.place,
         geo: new GeoPoint(report.geo.lat, report.geo.lng),
@@ -59,4 +67,18 @@ export default {
     //     console.error(error)
     //   });
   }),
+  [Action.GET_PLACE_REPORTS]: firestoreAction(async (context, placeId) => {
+    try {
+      const data = await db.collection('reports')
+        .where('place.place_id', '==', placeId)
+        // .orderBy('created', 'desc')
+        .get().then(snapshot => {
+          const documents = snapshot.docs.map(doc => doc.data());
+          return documents;
+        })
+      return data;
+    } catch (error) {
+      //
+    }
+  })
 }

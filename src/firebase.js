@@ -17,6 +17,13 @@ firebase.initializeApp(config)
 // firebase.analytics()
 const db = firebase.firestore()
 
+if (location.hostname === 'localhost') {
+  db.settings({
+    host: 'localhost:8000',
+    ssl: false,
+  })
+}
+
 export { db }
 
 const { Timestamp, GeoPoint } = firebase.firestore
