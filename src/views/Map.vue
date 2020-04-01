@@ -100,11 +100,11 @@
           this.currentZoom = 13;
         }
         // await this.geoSearch();
-        await this.getPlaces();
       } catch (error) {
         this.newSearchButton.show = true;
       } finally {
         this.setMapObject(this.$refs.mapRef.$mapObject)
+        await this.getPlaces();
         this.setLoading(false);
       }
     }
