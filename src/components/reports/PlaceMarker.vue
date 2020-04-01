@@ -1,7 +1,7 @@
 <template>
   <div>
     <gmap-marker
-      :position="place.geometry.location"
+      :position="{ lat: place.geo.F, lng: place.geo.V }"
       :clickable="true"
       @click="openDialog"
     ></gmap-marker>

@@ -1,8 +1,8 @@
 <template>
   <div>
       <place-marker
-        v-for="p in places"
-        :key="p.place_id"
+        v-for="(p, i) in places"
+        :key="`${p.place_id}_${i}`"
         :place="p"
       ></place-marker>
   </div>

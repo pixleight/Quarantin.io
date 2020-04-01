@@ -71,7 +71,7 @@ export default {
     try {
       const data = await db.collection('reports')
         .where('place.place_id', '==', placeId)
-        .orderBy('created', 'desc')
+        // .orderBy('created', 'desc')
         .get().then(snapshot => {
           const documents = snapshot.docs.map(doc => doc.data());
           return documents;

@@ -30,7 +30,7 @@
           </v-col>
         </v-row>
       </v-card-text>
-      <v-list v-if="reports.length">
+      <v-list v-if="reports.length && noRecent == false">
         <v-list-group v-for="(cat, i) in availableProducts" :key="i">
           <template #activator>
             <v-list-item-title>
@@ -48,8 +48,13 @@
 
         </v-list-group>
       </v-list>
-      <div v-else>
+      <div v-else-if="!reports.length && noRecent == false">
         <v-progress-circular indeterminate size="64"></v-progress-circular>
+      </div>
+      <div v-else>
+        <p>
+          <em>Sorry, no recent reports found!</em>
+        </p>
       </div>
       <v-footer dark color="primary" class="text-center body-2">
         <em>Product inventories are estimates provided by the community and may not reflect actual stock.</em>
@@ -69,6 +74,7 @@
   export default {
     data: () => ({
       reports: [],
+      noRecent: false,
     }),
     components: {
       ProductData,
@@ -108,9 +114,13 @@
         if( val ) {
           try {
             const reports = await this.getPlaceReports(this.place.place_id);
-            this.reports = reports;
+            if(reports) {
+              this.reports = reports;
+            } else {
+              this.noRecent = true;
+            }
           } catch (error) {
-            //
+            console.error(error)
           }
         }
       },
