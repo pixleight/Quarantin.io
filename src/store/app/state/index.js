@@ -4,7 +4,7 @@ export default {
   loading: false,
   geolocation: null,
   reportDialog: false,
-  donateDialog: true,
+  donateDialog: false,
   sessionToken: uuidv4(),
   navDrawer: false,
   updates: {

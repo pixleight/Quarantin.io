@@ -13,32 +13,24 @@
         </v-toolbar>
         <v-card-text>
 
-          <p class="title">
-            <strong>Thank you so much for your patience.</strong>
-          </p>
-
-          <p class="title">
-            After a marathon day of coding, I've updated the reporting feature, and it's now available to use again.
-          </p>
-
-          <p class="subtitle-1">
-            This project has been fun to work on, and I'm amazed at the response it's received.
+          <p class="subtitle-1 mt-4">
+            What began as a weekend side project has turned into a country-wide service helping thousands through tough times. This project has been fun to work on, and I'm amazed at the response it's received.
           </p>
 
           <p class="subtitle-1">
             There will continue to be hurdles to overcome, so I still ask that you please consider donating to help support the running of this site. Every bit helps, and a project of this size does come with a cost.
           </p>
 
-          <p>
+          <p class="subtitle-1">
             For those of you who have already donated, I cannot thank you enough for your contributions.
           </p>
 
-          <p>
+          <p class="subtitle-1">
             Stay safe, and I hope you enjoy my app.
           </p>
 
           <p>
-            Cheers,
+            Cheers,<br>
             Chris
           </p>
 

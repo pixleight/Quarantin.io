@@ -14,7 +14,7 @@
         elevation="2"
         class="body-2"
       >
-        If you've found this app helpful, <a href="#">please consider supporting it by making a donation</a>. Your contribution will help keep Quarantin.io running by offsetting web server and ongoing maintenance costs.
+        If you've found this app helpful, <a href="#" @click.prevent="toggleDonateDialog(true)">please consider supporting it by making a donation</a>. Your contribution will help keep Quarantin.io running by offsetting web server and ongoing maintenance costs.
       </v-alert>
     </header>
     <article>
@@ -58,6 +58,7 @@
     methods: {
       ...mapMutations('app', {
         setUpdatesUnread: AppMutation.SET_UPDATES_UNREAD,
+        toggleDonateDialog: AppMutation.SET_DONATE_DIALOG,
       })
     },
     mounted() {

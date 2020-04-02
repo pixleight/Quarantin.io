@@ -69,6 +69,18 @@
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item link @click="toggleDonateDialog(true)">
+          <v-list-item-action>
+            <v-icon>
+              mdi-wallet-giftcard
+            </v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>
+              Donate
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
     </v-list>
   </v-navigation-drawer>
 </template>
@@ -92,6 +104,7 @@
     methods: {
       ...mapMutations('app', {
         setNavDrawer: AppMutation.SET_NAV_DRAWER,
+        toggleDonateDialog: AppMutation.SET_DONATE_DIALOG,
       }),
     },
   }
