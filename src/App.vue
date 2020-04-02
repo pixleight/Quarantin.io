@@ -18,22 +18,24 @@
       color="info"
       :timeout="0"
     >
-      App updates available.
-      <v-btn
-        color="secondary"
-        class="primary--text text--darken-1"
-        @click="refreshApp"
-      >
-        Reload  
-      </v-btn>
-      <v-btn
-        text
-        dark
-        small
-        @click="newContentAvailable = false"
-      >
-        Close
-      </v-btn>
+      <span>App updates available.</span>
+      <div>
+        <v-btn
+          color="secondary"
+          class="primary--text text--darken-1"
+          @click="refreshApp"
+        >
+          Reload  
+        </v-btn>
+        <v-btn
+          text
+          dark
+          small
+          @click="newContentAvailable = false"
+        >
+          Close
+        </v-btn>
+      </div>
     </v-snackbar>
   </v-app>
 </template>
@@ -87,9 +89,11 @@ export default {
     // this.setLoading(true);
   },
   mounted() {
-    if( window.showRefreshDialog ) {
-      this.newContentAvailable = true
-    }
+    setTimeout(() => {
+      if( window.showRefreshDialog ) {
+        this.newContentAvailable = true
+      }
+    }, 2000)
     // this.setLoading(false);
   }
 };
