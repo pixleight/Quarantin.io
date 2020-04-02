@@ -223,23 +223,24 @@
           return false;
         }
         try {
+          this.setLoading(true)
+
           await this.addReport({
             place: this.form.place,
             geo: this.form.place.geometry.location,
             products: this.form.products,
           });
-          
-          this.snackbar.type = 'success'
-          this.snackbar.message = 'Thank you! Report added successfully.'
-          this.snackbar.open = true
+
+          this.setLoading(false)
+
+          this.$toast.success('New report added! Thank you!');
 
           this.initializeData();
           this.toggleReportDialog(false)
         } catch (error) {
-          console.error(error);
-          this.snackbar.type = 'error'
-          this.snackbar.message = 'Oops! Something went wrong. Please try again.'
-          this.snackbar.open = true
+          this.$toast.error('Oops! Something went wrong. Please try again.')
+        } finally {
+          this.toggleReportDialog(false)
         }
       },
       async selectLocation(placeId) {
@@ -258,7 +259,7 @@
             fields: 'name,place_id,formatted_address,geometry'
           },
         });
-        console.log('place results', results.data.result)
+        // console.log('place results', results.data.result)
         this.placeLoading = false;
         this.form.place = results.data.result;
         this.placeError = false;

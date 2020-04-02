@@ -65,19 +65,6 @@
         </v-form>
       </v-col>
     </v-row>
-    <v-snackbar
-      v-model="snackbar.open"
-      :color="snackbar.color"
-    >
-      {{ snackbar.message }}
-      <v-btn
-        color="white"
-        text
-        @click="snackbar.open = false"
-      >
-        Close
-      </v-btn>
-    </v-snackbar>
   </v-container>
 </template>
 
@@ -96,11 +83,6 @@
         email: '',
         comments: '',
       },
-      snackbar: {
-        open: false,
-        color: '',
-        message: '',
-      }
     }),
     methods: {
       ...mapMutations('app', {
@@ -129,22 +111,12 @@
             data: formdata,
           })
 
-          this.snackbar = {
-            open: true,
-            color: 'success',
-            message: 'Thank you for your feedback!'
-          }
-          this.form = {
-            name: '',
-            email: '',
-            comments: '',
-          }
+          this.$toast.success('Thank you for your feedback!');
+
+          this.$refs.form.reset()
+          
         } catch (error) {
-          this.snackbar = {
-            open: true,
-            color: 'error',
-            message: 'Something went wrong. Please try again soon.'
-          }
+          this.$toast.error('Something went wrong. Please try again soon.');
         } finally {
           this.loading = false;
         }

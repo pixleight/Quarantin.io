@@ -24,21 +24,10 @@
 
     <v-spacer></v-spacer>
 
-    <v-btn text rounded to="/map" aria-label="View Map">
-      <v-icon left>mdi-map</v-icon>
-      View Map
+    <v-btn :icon="$vuetify.breakpoint.xsOnly" :text="$vuetify.breakpoint.smAndUp" rounded to="/map" aria-label="View Map">
+      <v-icon :left="$vuetify.breakpoint.smAndUp">mdi-map</v-icon>
+      <span v-if="$vuetify.breakpoint.smAndUp">View Map</span>
     </v-btn>
-
-    <v-tooltip bottom>
-      <template #activator="{ on: tooltip }">
-        <v-btn icon to="/feedback" v-on="{ ...tooltip }" aria-label="Feedback">
-          <v-icon>
-            mdi-help-circle
-          </v-icon>
-        </v-btn>
-      </template>
-      <span>Feedback</span>
-    </v-tooltip>
 
       <v-btn icon aria-label="Menu" @click.stop="setNavDrawer(true)">
         <v-badge dot overlap color="red" :value="updateAvailable">
