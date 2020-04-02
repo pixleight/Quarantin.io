@@ -82,7 +82,7 @@ export default {
       setNavDrawer: AppMutation.SET_NAV_DRAWER,
     }),
     refreshApp() {
-      location.reload(true)
+      location.reload()
     }
   },
   created() {
