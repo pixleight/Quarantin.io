@@ -1,6 +1,6 @@
 import firebase from '@firebase/app'
 import '@firebase/firestore'
-import '@firebase/analytics'
+// import '@firebase/analytics'
 
 const config = {
   apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
