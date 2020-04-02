@@ -16,4 +16,10 @@ export default {
   [Mutation.SET_MAP_OBJECT](state, payload) {
     state.map = payload;
   },
+  [Mutation.SET_NAV_DRAWER](state, payload) {
+    state.navDrawer = payload;
+  },
+  [Mutation.SET_UPDATES_UNREAD](state, payload) {
+    state.updates.unread = payload;
+  },
 }

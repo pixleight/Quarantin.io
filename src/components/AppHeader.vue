@@ -39,19 +39,34 @@
       </template>
       <span>Feedback</span>
     </v-tooltip>
+
+      <v-btn icon aria-label="Menu" @click.stop="setNavDrawer(true)">
+        <v-badge dot overlap color="red" :value="updateAvailable">
+          <v-icon>
+            mdi-menu
+          </v-icon>
+        </v-badge>
+      </v-btn>
   </v-app-bar>
 </template>
 
 <script>
-  import { mapMutations } from 'vuex'
+  import { mapMutations, mapGetters } from 'vuex'
   import {
+    Getter as AppGetter,
     Mutation as AppMutation
   } from '@/store/app/types'
 
   export default {
+    computed: {
+      ...mapGetters('app', {
+        updateAvailable: AppGetter.GET_UPDATE_AVAILABLE,
+      }),
+    },
     methods: {
       ...mapMutations('app', {
         toggleReportDialog: AppMutation.SET_REPORT_DIALOG,
+        setNavDrawer: AppMutation.SET_NAV_DRAWER,
       }),
     },
   }

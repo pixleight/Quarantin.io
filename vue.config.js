@@ -25,21 +25,24 @@ module.exports = {
   },
 
   configureWebpack: () => {
-    return {
-      plugins: [
-        new PrerenderSPAPlugin(
-          // Absolute path to compiled SPA
-          path.resolve(__dirname, 'dist'),
-          // List of routes to prerender
-          [
-            '/',
-            '/feedback',
-          ],
-          {
-            //options
-          }
-        ),
-      ]
+    if (process.env.NODE_ENV === 'production') {
+      return {
+        plugins: [
+          new PrerenderSPAPlugin(
+            // Absolute path to compiled SPA
+            path.resolve(__dirname, 'dist'),
+            // List of routes to prerender
+            [
+              '/',
+              '/feedback',
+              '/updates',
+            ],
+            {
+              //options
+            }
+          ),
+        ]
+      }
     }
   }
 }

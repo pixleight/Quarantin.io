@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <app-nav-drawer></app-nav-drawer>
     <app-header></app-header>
 
     <v-content>
@@ -21,6 +22,7 @@ import {
 } from '@/store/app/types'
 import AppHeader from '@/components/AppHeader';
 import AppFooter from '@/components/AppFooter';
+import AppNavDrawer from '@/components/AppNavDrawer';
 import AddReport from '@/components/reports/AddReport'
 
 export default {
@@ -42,12 +44,14 @@ export default {
   components: {
     AppHeader,
     AppFooter,
+    AppNavDrawer,
     AddReport,
   },
   methods: {
     ...mapMutations('app', {
       setLoading: AppMutation.SET_LOADING,
       toggleReportDialog: AppMutation.SET_REPORT_DIALOG,
+      setNavDrawer: AppMutation.SET_NAV_DRAWER,
     }),
   },
   created() {

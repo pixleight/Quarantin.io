@@ -6,4 +6,9 @@ export default {
   reportDialog: false,
   donateDialog: true,
   sessionToken: uuidv4(),
+  navDrawer: false,
+  updates: {
+    lastUpdate: '2020-03-30',
+    unread: true,
+  },
 }

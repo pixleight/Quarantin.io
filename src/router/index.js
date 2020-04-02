@@ -22,6 +22,11 @@ const routes = [
     name: 'Feedback',
     component: () => import(/* webpackChunkName: "feedback" */ '../views/Feedback.vue')
   },
+  {
+    path: '/updates',
+    name: 'Updates',
+    component: () => import(/* webpackChunkName: "updates" */ '../views/Updates.vue')
+  },
 ]
 
 const router = new VueRouter({
