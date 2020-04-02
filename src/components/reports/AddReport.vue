@@ -158,6 +158,25 @@
 
         return products;
       },
+      emptyReport() {
+        // const empty = this.form.products.reduce((total, category) => {
+        //   const hasActive = category.products.find(product => product.include)
+
+        //   return total + hasActive.length
+        // });
+
+        let hasActive = false
+        this.form.products.forEach(cat => {
+          cat.products.forEach(product => {
+            console.log(`${product.name}`, product.include)
+            if(product.include) {
+              hasActive = true
+            }
+          })
+        })
+
+        return !hasActive
+      }
     },
     data: () => ({
       valid: false,
@@ -222,6 +241,12 @@
           this.placeError = true;
           return false;
         }
+
+        if(this.emptyReport) {
+          this.$toast.error("An empty report doesn't help show what's available! Please select at least one product to include in this report.")
+          return false;
+        }
+
         try {
           this.setLoading(true)
 
