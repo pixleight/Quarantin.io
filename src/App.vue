@@ -13,6 +13,28 @@
     <v-overlay :value="loading">
       <v-progress-circular indeterminate size="64"></v-progress-circular>
     </v-overlay>
+    <v-snackbar
+      v-model="newContentAvailable"
+      color="info"
+      :timeout="0"
+    >
+      App updates available.
+      <v-btn
+        color="secondary"
+        class="primary--text text--darken-1"
+        @click="refreshApp"
+      >
+        Reload  
+      </v-btn>
+      <v-btn
+        text
+        dark
+        small
+        @click="newContentAvailable = false"
+      >
+        Close
+      </v-btn>
+    </v-snackbar>
   </v-app>
 </template>
 
@@ -37,6 +59,7 @@ export default {
   },
   data: () => ({
     filterDrawer: false,
+    newContentAvailable: false,
   }),
   computed: {
     ...mapState('app', {
@@ -56,11 +79,17 @@ export default {
       toggleReportDialog: AppMutation.SET_REPORT_DIALOG,
       setNavDrawer: AppMutation.SET_NAV_DRAWER,
     }),
+    refreshApp() {
+      location.reload(true)
+    }
   },
   created() {
     // this.setLoading(true);
   },
   mounted() {
+    if( window.showRefreshDialog ) {
+      this.newContentAvailable = true
+    }
     // this.setLoading(false);
   }
 };
