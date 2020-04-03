@@ -11,7 +11,7 @@
               With the recent COVID-19 outbreak, we've found a lot of aspects of our lives turned upside down as more and more of us are needing to stay home as much as possible.
             </p>
             <p>
-              One of the problems facing people during the crisis has been finding basic household staples — such as toilet paper, milk, or disinfencants.
+              One of the problems facing people during the crisis has been finding basic household staples — such as toilet paper, milk, or disinfectants.
             </p>
             <p>
               <strong>Quarantin.io</strong> aims to help with this problem by asking community members to share what they've found while on their own shopping trips. By being able to preview what stores have in stock, hopefully people reduce their risk of exposure by knowing where to find products ahead of time and not needing to visit multiple stores.

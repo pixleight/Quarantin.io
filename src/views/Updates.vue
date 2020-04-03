@@ -20,6 +20,23 @@
     <article>
       <header>
         <h2 class="primary--text">
+          Thursday, April 2, 2020
+        </h2>
+      </header>
+      <main>
+        <ul>
+          <li>
+            Reports are now required to be submitted with at least one product stock estimation. Several locations have 1 report and no data available, so this should cut down on that happening anymore. Even if the shelves are empty, that's useful information for someone else!
+          </li>
+        </ul>
+      </main>
+    </article>
+
+    <v-divider></v-divider>
+
+    <article>
+      <header>
+        <h2 class="primary--text">
           Wednesday, April 1, 2020
         </h2>
       </header>
