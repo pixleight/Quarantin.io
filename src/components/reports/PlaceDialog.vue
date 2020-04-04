@@ -56,14 +56,12 @@
 
         </v-list-group>
       </v-list>
-      <div v-else-if="!reports.length && noRecent == false">
-        <v-progress-circular indeterminate size="64"></v-progress-circular>
-      </div>
-      <div v-else>
-        <p>
-          <em>Sorry, no recent reports found!</em>
-        </p>
-      </div>
+      <v-card-text v-else-if="!reports.length && noRecent == false">
+        <v-progress-linear indeterminate height="8" rounded></v-progress-linear>
+      </v-card-text>
+      <v-card-text v-else>
+        <em>Sorry, no recent reports found!</em>
+      </v-card-text>
       <v-footer dark color="primary" class="text-center body-2">
         <em>Product inventories are estimates provided by the community and may not reflect actual stock.</em>
       </v-footer>
@@ -125,12 +123,14 @@
         if( val ) {
           try {
             const reports = await this.getPlaceReports(this.place.place_id);
-            if(reports) {
+
+            if(reports.length) {
               this.reports = reports;
             } else {
               this.noRecent = true;
             }
           } catch (error) {
+            this.$toast.error("Sorry, there was an error loading recent reports for this location.")
             console.error(error)
           }
         }
