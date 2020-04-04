@@ -20,6 +20,25 @@
     <article>
       <header>
         <h2 class="primary--text">
+          Friday, April 3, 2020
+        </h2>
+      </header>
+      <main>
+        <ul>
+          <li>
+            Locations now show the how recently each product has been updated.
+          </li>
+          <li>
+            Reports will now only remain active for last 72 hours. If a location has not had a report in that time, a "no recent reports found" message will display.
+          </li>
+        </ul>
+      </main>
+    </article>
+
+    <v-divider></v-divider>
+    <article>
+      <header>
+        <h2 class="primary--text">
           Thursday, April 2, 2020
         </h2>
       </header>
