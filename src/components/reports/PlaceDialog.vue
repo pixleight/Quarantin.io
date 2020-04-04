@@ -37,14 +37,22 @@
               <span class="font-weight-bold">{{ cat.category }}</span>
             </v-list-item-title>
           </template>
-          <v-list-item v-for="(product, i) in cat.items" :key="i">
-            <v-list-item-title>
-              {{ product }}
-            </v-list-item-title>
-            <v-list-item-action>
-              <product-data :data="groupedProducts[product]"></product-data>
-            </v-list-item-action>
-          </v-list-item>
+          <div two-line v-for="(product, i) in cat.items" :key="i">
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title>
+                  {{ product }}
+                </v-list-item-title>
+                <v-list-item-subtitle v-if="!!place.product_updates[product]">
+                  Last updated {{ lastProductUpdate(place.product_updates[product]) }}
+                </v-list-item-subtitle>
+              </v-list-item-content>
+              <v-list-item-action>
+                <product-data :data="groupedProducts[product]"></product-data>
+              </v-list-item-action>
+            </v-list-item>
+            <v-divider></v-divider>
+          </div>
 
         </v-list-group>
       </v-list>
@@ -107,6 +115,9 @@
       }),
       averageScore() {
         //
+      },
+      lastProductUpdate(time) {
+        return moment(time).fromNow();
       }
     },
     watch: {
