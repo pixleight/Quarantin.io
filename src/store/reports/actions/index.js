@@ -68,10 +68,17 @@ export default {
     //   });
   }),
   [Action.GET_PLACE_REPORTS]: firestoreAction(async (context, placeId) => {
+
+    const hoursAgo = 72;
+    const milliAgo = hoursAgo * 60 * 60 * 1000;
+    const beginningDate = Date.now() - milliAgo;
+    const beginningDateObj = new Date(beginningDate);
+
     try {
       const data = await db.collection('reports')
         .where('place.place_id', '==', placeId)
-        // .orderBy('created', 'desc')
+        .where('created', '>', beginningDateObj)
+        .orderBy('created', 'desc')
         .get().then(snapshot => {
           const documents = snapshot.docs.map(doc => doc.data());
           return documents;
