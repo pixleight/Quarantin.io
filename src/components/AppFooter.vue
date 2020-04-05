@@ -1,22 +1,26 @@
 <template>
   <v-footer app dark padless class="pt-8 pt-md-0">
-    <v-tooltip top>
-      <template #activator="{ on: tooltip }">
-        <v-btn
-          absolute
-          dark
-          fab
-          top
-          large
-          color="secondary"
-          v-on="{ ...tooltip }"
-          @click="openReportDialog()"
-        >
-          <v-icon>mdi-map-marker-plus</v-icon>
-        </v-btn>
+    <add-report>
+      <template #button="slotProps">
+        <v-tooltip top>
+          <template #activator="{ on: tooltip }">
+            <v-btn
+              absolute
+              dark
+              fab
+              top
+              large
+              color="secondary"
+              v-on="{ ...tooltip }"
+              @click="slotProps.toggleDialog(true)"
+            >
+              <v-icon>mdi-map-marker-plus</v-icon>
+            </v-btn>
+          </template>
+          <span>Add Report</span>
+        </v-tooltip>
       </template>
-      <span>Add Report</span>
-    </v-tooltip>
+    </add-report>
     <v-container>
       <v-row align="center">
         <v-col cols="7" sm>
@@ -44,8 +48,12 @@
 <script>
   import { mapMutations,  } from 'vuex'
   import { Mutation as AppMutation } from '@/store/app/types'
+  import AddReport from '@/components/reports/AddReport'
 
   export default {
+    components: {
+      AddReport,
+    },
     methods: {
       ...mapMutations('app', {
         toggleReportDialog: AppMutation.SET_REPORT_DIALOG,
