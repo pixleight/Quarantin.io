@@ -20,6 +20,25 @@
     <article>
       <header>
         <h2 class="primary--text">
+          Sunday, April 5, 2020
+        </h2>
+      </header>
+      <main>
+        <ul>
+          <li>
+            You can now add a report to a location while viewing a location's details. This should help users be able to quickly update stock estimates for businesses without needing to manually search for it.
+          </li>
+          <li>
+            Several behind-the-scenes updates to keep everything running smoothly.
+          </li>
+        </ul>
+      </main>
+    </article>
+
+    <v-divider></v-divider>
+    <article>
+      <header>
+        <h2 class="primary--text">
           Friday, April 3, 2020
         </h2>
       </header>
