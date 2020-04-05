@@ -94,6 +94,10 @@ export default {
         this.newContentAvailable = true
       }
     }, 2000)
+
+    if (process.env.NODE_ENV !== 'production') {
+      this.$gtm.debug(true)
+    }
     // this.setLoading(false);
   }
 };

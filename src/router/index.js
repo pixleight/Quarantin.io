@@ -10,22 +10,26 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: { gtm: 'Home' },
   },
   {
     path: '/map',
     name: 'Map',
-    component: () => import(/* webpackChunkName: "map" */ '../views/Map.vue')
+    component: () => import(/* webpackChunkName: "map" */ '../views/Map.vue'),
+    meta: { gtm: 'Map' }
   },
   {
     path: '/feedback',
     name: 'Feedback',
-    component: () => import(/* webpackChunkName: "feedback" */ '../views/Feedback.vue')
+    component: () => import(/* webpackChunkName: "feedback" */ '../views/Feedback.vue'),
+    meta: { gtm: 'Feedback' },
   },
   {
     path: '/updates',
     name: 'Updates',
-    component: () => import(/* webpackChunkName: "updates" */ '../views/Updates.vue')
+    component: () => import(/* webpackChunkName: "updates" */ '../views/Updates.vue'),
+    meta: { gtm: 'Updates' },
   },
 ]
 

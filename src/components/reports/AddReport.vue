@@ -256,6 +256,14 @@
             products: this.form.products,
           });
 
+          this.$gtm.trackEvent({
+            event: 'interaction',
+            category: 'Report',
+            action: 'submit',
+            label: 'Report submission',
+            value: this.form,
+          })
+
           this.setLoading(false)
 
           this.$toast.success('New report added! Thank you!');

@@ -4,6 +4,7 @@ import '@firebase/auth'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import GmapCluster from 'vue2-google-maps/dist/components/cluster'
 import Toast from 'vue-toastification'
+import VueGtm from 'vue-gtm'
 
 import App from './App.vue'
 import './registerServiceWorker'
@@ -36,6 +37,11 @@ const toastOptions = {
 }
 
 Vue.use(Toast, toastOptions)
+
+Vue.use(VueGtm, {
+  id: ['GTM-NCDHF49', 'G-JSFPWQZHVB'],
+  vueRouter: router,
+})
 
 new Vue({
   router,

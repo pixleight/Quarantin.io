@@ -121,6 +121,14 @@
     watch: {
       async dialog(val){
         if( val ) {
+          this.$gtm.trackEvent({
+            event: 'interaction',
+            category: 'Place',
+            action: 'click',
+            label: 'Place dialog open',
+            value: this.place,
+          })
+
           try {
             const reports = await this.getPlaceReports(this.place.place_id);
 

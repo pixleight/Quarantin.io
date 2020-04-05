@@ -111,6 +111,14 @@
             data: formdata,
           })
 
+          this.$gtm.trackEvent({
+            event: 'interaction',
+            category: 'Feedback',
+            action: 'submit',
+            label: 'Feedback form submit',
+            value: this.form,
+          })
+
           this.$toast.success('Thank you for your feedback!');
 
           this.$refs.form.reset()

@@ -10,12 +10,12 @@
           large
           color="secondary"
           v-on="{ ...tooltip }"
-          @click="toggleReportDialog(true)"
+          @click="openReportDialog()"
         >
           <v-icon>mdi-map-marker-plus</v-icon>
         </v-btn>
       </template>
-      <span>Add Product</span>
+      <span>Add Report</span>
     </v-tooltip>
     <v-container>
       <v-row align="center">
@@ -51,6 +51,16 @@
         toggleReportDialog: AppMutation.SET_REPORT_DIALOG,
         toggleDonateDialog: AppMutation.SET_DONATE_DIALOG,
       }),
+      openReportDialog() {
+        this.$gtm.trackEvent({
+          event: 'interaction',
+          category: 'Report',
+          action: 'click',
+          label: 'Footer report button',
+          value: true,
+        })
+        this.toggleReportDialog(true)
+      }
     }
   }
 </script>
