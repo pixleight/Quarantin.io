@@ -20,6 +20,34 @@
     <article>
       <header>
         <h2 class="primary--text">
+          Thursday, April 9, 2020
+        </h2>
+      </header>
+      <main>
+        <ul>
+          <li>
+            Revised searching for locations on the map to help find businesses more easily:
+            <ol>
+              <li>
+                Move the map to an area you would like to search for businesses and click <strong>Search Area</strong>
+              </li>
+              <li>
+                Click <strong>Search Locations</strong> if you would like to search within the results by business name or address.
+              </li>
+              <li>
+                If no businesses are found, move the map and redo steps #1 and #2.<br>
+                If a business you're looking for is still not found, it may not have any reports added to it yet. Consider adding your own report if you visit it yourself!
+              </li>
+            </ol>
+          </li>
+        </ul>
+      </main>
+    </article>
+
+    <v-divider></v-divider>
+    <article>
+      <header>
+        <h2 class="primary--text">
           Wednesday, April 8, 2020
         </h2>
       </header>
@@ -153,7 +181,7 @@ hr {
   margin-bottom: 3rem;
 }
 
-ul {
+ul, ol {
   margin: 1rem;
 }
 

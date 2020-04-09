@@ -129,7 +129,7 @@
 <style lang="scss" scoped>
 .search-block {
   position: absolute;
-  z-index: 10;
+  z-index: 5;
   top: 3.5rem;
   right: 10px;
   max-width: 75vw;

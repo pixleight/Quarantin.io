@@ -8,7 +8,7 @@ export default {
   sessionToken: uuidv4(),
   navDrawer: false,
   updates: {
-    lastUpdate: '2020-04-08',
+    lastUpdate: '2020-04-09',
     unread: true,
   },
 }
