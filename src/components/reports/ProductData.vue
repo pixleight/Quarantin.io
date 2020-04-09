@@ -21,10 +21,14 @@
     props: ['data'],
     computed: {
       activeScores() {
-        return this.data.filter(s => s.include)
+        if( !this.data ) return null;
+
+        return this.data.filter(s => s.include) || null
       },
       hasData() {
-        return Boolean(this.activeScores.length);
+        if( !this.data ) return false;
+        
+        return Boolean(this.activeScores.length)
       },
       total() {
         if( !this.hasData ) return 0;
