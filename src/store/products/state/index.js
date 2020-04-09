@@ -6,6 +6,7 @@ export default {
       items: [
         'Bread',
         'Eggs',
+        'Flour',
         'Milk',
         'Pasta',
         'Produce',
@@ -16,6 +17,7 @@ export default {
       items: [
         'Disinfectant Spray',
         'Disinfectant Wipes',
+        'Face Masks',
         'Hand Sanitizer',
         'Paper Towels',
         'Toilet Paper',

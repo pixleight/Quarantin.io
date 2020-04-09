@@ -20,6 +20,24 @@
     <article>
       <header>
         <h2 class="primary--text">
+          Wednesday, April 8, 2020
+        </h2>
+      </header>
+      <main>
+        <ul>
+          <li>
+            Added <strong>flour</strong> and <strong>face masks</strong> to the available products for reports.<br>
+            Please fill out the <router-link to="/feedback">feedback form</router-link> to submit other product types and we'll add some to the app.
+          </li>
+        </ul>
+      </main>
+    </article>
+
+    <v-divider></v-divider>
+
+    <article>
+      <header>
+        <h2 class="primary--text">
           Sunday, April 5, 2020
         </h2>
       </header>

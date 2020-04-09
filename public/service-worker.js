@@ -7,7 +7,7 @@ self.addEventListener('message', (event) => {
 });
 
 //Change this value every time before you build
-const LATEST_VERSION = 'v1.10.0'
+const LATEST_VERSION = 'v1.11.0'
 
 self.addEventListener('activate', (event) => {
   console.log(`%c ${LATEST_VERSION} `, 'background: #ddd; color: #0000ff')

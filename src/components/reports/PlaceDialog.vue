@@ -49,7 +49,7 @@
                   </v-list-item-subtitle>
                 </v-list-item-content>
                 <v-list-item-action>
-                  <product-data :data="groupedProducts[product]"></product-data>
+                  <product-data :data="groupedProducts[product] || null"></product-data>
                 </v-list-item-action>
               </v-list-item>
               <v-divider></v-divider>
