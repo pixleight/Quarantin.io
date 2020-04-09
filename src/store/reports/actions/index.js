@@ -32,40 +32,22 @@ export default {
       console.error(error);
     }
   }),
-  [Action.GEO_QUERY]: firestoreAction(async ({bindFirestoreRef}) => {
+  [Action.GEO_QUERY]: firestoreAction(async ({bindFirestoreRef}, mapBounds) => {
 
-    // const upperLat = mapBounds.getNorthEast().lat();
-    // const upperLon = mapBounds.getNorthEast().lng();
-    // const lowerLat = mapBounds.getSouthWest().lat();
-    // const lowerLon = mapBounds.getSouthWest().lng();
+    const upperLat = mapBounds.getNorthEast().lat();
+    const upperLon = mapBounds.getNorthEast().lng();
+    const lowerLat = mapBounds.getSouthWest().lat();
+    const lowerLon = mapBounds.getSouthWest().lng();
 
-    // let lesserGeopoint = new GeoPoint(lowerLat, lowerLon);
-    // let greaterGeopoint = new GeoPoint(upperLat, upperLon);
-
-    const hoursAgo = 72;
-    const milliAgo = hoursAgo * 60 * 60 * 1000;
-    const beginningDate = Date.now() - milliAgo;
-    const beginningDateObj = new Date(beginningDate);
+    let lesserGeopoint = new GeoPoint(lowerLat, lowerLon);
+    let greaterGeopoint = new GeoPoint(upperLat, upperLon);
 
     await bindFirestoreRef(
-      'geoReports',
-      db.collection('reports')
-        .where('created', '>', beginningDateObj)
-        .orderBy('created', 'asc')
+      'places',
+      db.collection('places')
+        .where('geo', '>', lesserGeopoint)
+        .where('geo', '<', greaterGeopoint)
     )
-
-    // await db.collection('reports')
-    // .where('created', '>', beginningDateObj)
-    // .orderBy('created', 'asc')
-    //   // .where('geo', '>', lesserGeopoint)
-    //   // .where('geo', '<', greaterGeopoint)
-    //   .get().then(querySnapshot => {
-    //     const documents = querySnapshot.docs.map(doc => doc.data());
-    //     commit(Mutation.SET_REPORTS, documents);
-    //     return;
-    //   }).catch(error => {
-    //     console.error(error)
-    //   });
   }),
   [Action.GET_PLACE_REPORTS]: firestoreAction(async (context, placeId) => {
 
