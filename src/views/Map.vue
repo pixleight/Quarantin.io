@@ -1,6 +1,9 @@
 <template>
   <v-container fluid fill-height>
-    <place-search @place-search="updateMap($event)"></place-search>
+    <place-search
+      @place-search="zoomToPlace($event)"
+      @area-search="startNewSearch()"
+    ></place-search>
     <GmapMap
       ref="mapRef"
       :center="center"
@@ -60,24 +63,20 @@
         setLoading: AppMutation.SET_LOADING,
         setMapObject: AppMutation.SET_MAP_OBJECT,
       }),
-      async updateMap(place) {
+      async zoomToPlace(place) {
         if(!place) return false
-
-        console.log('updateMap', place)
 
         await this.map.panTo({
           lat: place.geo.F,
           lng: place.geo.V,
         });
-        await this.map.setZoom(15);
-        this.currentZoom = 15;
+        await this.map.setZoom(16);
+        this.currentZoom = 16;
       },
       async geoSearch() {
         try {
-          const mapBounds = this.$refs.mapRef.$mapObject.getBounds()
-          await this.geoQuery(mapBounds).then(() => {
-            return;
-          })
+          // const mapBounds = this.$refs.mapRef.$mapObject.getBounds()
+          await this.geoQuery(this.map.getBounds())
         } catch (error) {
           //
         }
@@ -91,7 +90,7 @@
       async startNewSearch() {
         try {
           this.setLoading(true);
-          this.newSearchButton.show = false;
+          // this.newSearchButton.show = false;
           await this.geoSearch();
           this.setLoading(false);
         } catch (error) {
@@ -105,6 +104,8 @@
     async mounted() {
       try {
         const map = await this.$refs.mapRef.$mapPromise;
+        await this.setMapObject(this.$refs.mapRef.$mapObject)
+
         await this.geolocate();
         if (this.appGeo) {
           await map.panTo(this.appGeo);
@@ -115,8 +116,15 @@
       } catch (error) {
         this.newSearchButton.show = true;
       } finally {
-        this.setMapObject(this.$refs.mapRef.$mapObject)
-        await this.getPlaces();
+        // const geoSearch = this.geoSearch
+        await new Promise(resolve => {
+          setTimeout(() => {
+            this.geoSearch().then(() => {
+              resolve()
+            })
+          }, 3000)
+        })
+        
         this.setLoading(false);
       }
     }
@@ -129,8 +137,13 @@
 }
 .search-area {
   position: absolute;
+  z-index: 10;
+  top: 10px;
+  right: 10px;
+}
+
+.search-area--md {
   top: 4rem;
-  z-index: 5;
   left: 50%;
   transform: translateX(-50%);
 }

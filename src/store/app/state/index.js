@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 export default {
   loading: false,
-  geolocation: null,
+  geolocation: {lat: 39.833333, lng: -98.583333},
   reportDialog: false,
   donateDialog: false,
   sessionToken: uuidv4(),

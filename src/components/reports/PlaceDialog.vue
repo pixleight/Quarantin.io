@@ -135,10 +135,24 @@
       },
       lastProductUpdate(time) {
         return moment(time).fromNow();
-      }
+      },
+      async getReports() {
+        try {
+          const reports = await this.getPlaceReports(this.place.place_id);
+
+          if(reports.length) {
+            this.reports = reports;
+          } else {
+            this.noRecent = true;
+          }
+        } catch (error) {
+          this.$toast.error("Sorry, there was an error loading recent reports for this location.")
+          console.error(error)
+        }
+      },
     },
     watch: {
-      async dialog(val){
+      async dialog(val) {
         if( val ) {
           this.$gtm.trackEvent({
             event: 'interaction',
@@ -148,18 +162,7 @@
             value: this.place,
           })
 
-          try {
-            const reports = await this.getPlaceReports(this.place.place_id);
-
-            if(reports.length) {
-              this.reports = reports;
-            } else {
-              this.noRecent = true;
-            }
-          } catch (error) {
-            this.$toast.error("Sorry, there was an error loading recent reports for this location.")
-            console.error(error)
-          }
+          await this.getReports()
         }
       },
     },
