@@ -1,5 +1,6 @@
 <template>
   <v-container fluid fill-height>
+    <place-search @place-search="updateMap($event)"></place-search>
     <GmapMap
       ref="mapRef"
       :center="center"
@@ -15,12 +16,12 @@
 
 <script>
   // import _ from 'lodash'
-  import { mapActions, mapGetters, mapState, mapMutations } from 'vuex'
+  import { mapActions, mapState, mapMutations } from 'vuex'
   import ReportMarkers from '@/components/reports/Markers'
   import { Action as AppAction } from '@/store/app/types'
   import { Mutation as AppMutation } from '@/store/app/types'
   import { Action as ReportAction } from '@/store/reports/types'
-  import { Getter as ReportGetter } from '@/store/reports/types'
+  import PlaceSearch from '@/components/map/PlaceSearch'
 
   export default {
     metaInfo : {
@@ -29,23 +30,22 @@
     data: () => ({
       center: {lat: 39.833333, lng: -98.583333},
       zoom: 4,
-      map: null,
       newSearchButton: {
         show: false,
         loading: false,
       },
       currentZoom: 4,
+      placeSearch: null,
     }),
     components: {
       ReportMarkers,
+      PlaceSearch,
     },
     computed: {
       ...mapState('app', {
         appGeo: state => state.geolocation,
+        map: state => state.map,
       }),
-      ...mapGetters('reports', {
-        groupedReports: ReportGetter.GROUPED_REPORTS,
-      })
     },
     methods: {
       ...mapActions('reports', {
@@ -60,6 +60,18 @@
         setLoading: AppMutation.SET_LOADING,
         setMapObject: AppMutation.SET_MAP_OBJECT,
       }),
+      async updateMap(place) {
+        if(!place) return false
+
+        console.log('updateMap', place)
+
+        await this.map.panTo({
+          lat: place.geo.F,
+          lng: place.geo.V,
+        });
+        await this.map.setZoom(15);
+        this.currentZoom = 15;
+      },
       async geoSearch() {
         try {
           const mapBounds = this.$refs.mapRef.$mapObject.getBounds()
