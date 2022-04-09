@@ -13,7 +13,7 @@
     "core-js": "^3.6.4",
     "firebase": "^7.11.0",
     "lodash": "^4.17.19",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "prerender-spa-plugin": "^3.4.0",
     "register-service-worker": "^1.6.2",
     "uuid": "^7.0.2",
